@@ -1,4 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio_website/constant/colors.dart';
+import 'package:portfolio_website/constant/size.dart';
+import 'package:portfolio_website/constant/sns_links.dart';
+import 'package:portfolio_website/widgets/contact_section.dart';
+import 'package:portfolio_website/widgets/drawer_mobile.dart';
+import 'package:portfolio_website/widgets/footer.dart';
+import 'package:portfolio_website/widgets/header_desktop.dart';
+import 'package:portfolio_website/widgets/header_mobile.dart';
+import 'package:portfolio_website/widgets/main_desktop.dart';
+import 'package:portfolio_website/widgets/main_mobile.dart';
+import 'package:portfolio_website/widgets/projects_section.dart';
+import 'package:portfolio_website/widgets/skills_desktop.dart';
+import 'package:portfolio_website/widgets/skills_mobile.dart';
+import 'dart:js' as js;
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});

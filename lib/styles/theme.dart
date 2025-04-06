@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../constants/colors.dart';
+import 'package:portfolio_website/constant/colors.dart';
 
 ThemeData kCustomTheme = ThemeData.dark().copyWith(
   iconTheme: const IconThemeData(
