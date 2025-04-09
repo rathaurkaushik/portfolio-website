@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio_website/constant/colors.dart';
+import 'package:portfolio_website/constant/skill_items.dart';
 
 
 class SkillsMobile extends StatelessWidget {
@@ -48,7 +50,7 @@ class SkillsMobile extends StatelessWidget {
                     horizontal: 16.0,
                   ),
                   backgroundColor: CustomColor.bgLight2,
-                  label: Text(skillItems[i]["title"]),
+                  label: Text(skillItems[i]["title"],style: TextStyle(color: CustomColor.textFieldBg),),
                   avatar: Image.asset(skillItems[i]["img"]),
                 ),
             ],

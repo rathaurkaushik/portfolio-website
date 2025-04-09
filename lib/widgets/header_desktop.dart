@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:my_portfolio/widgets/site_logo.dart';
+import 'package:portfolio_website/constant/colors.dart';
+import 'package:portfolio_website/constant/nav_items.dart';
+import 'package:portfolio_website/widgets/site_logo.dart';
 
-import '../constants/colors.dart';
-import '../constants/nav_items.dart';
 import '../styles/style.dart';
 
 class HeaderDesktop extends StatelessWidget {
@@ -15,6 +15,7 @@ class HeaderDesktop extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+
       height: 60.0,
       margin: const EdgeInsets.symmetric(
         vertical: 10.0,
@@ -25,7 +26,8 @@ class HeaderDesktop extends StatelessWidget {
       child: Row(
         children: [
           SiteLogo(
-            onTap: () {},
+            onTap: () {
+            },
           ),
           const Spacer(),
           for (int i = 0; i < navTitles.length; i++)

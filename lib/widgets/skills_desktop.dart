@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio_website/constant/colors.dart';
+import 'package:portfolio_website/constant/skill_items.dart';
 
 
 class SkillsDesktop extends StatelessWidget {
@@ -35,7 +37,7 @@ class SkillsDesktop extends StatelessWidget {
                       platformItems[i]["img"],
                       width: 26.0,
                     ),
-                    title: Text(platformItems[i]["title"]),
+                    title: Text(platformItems[i]["title"],style: TextStyle(color: CustomColor.textFieldBg),),
                   ),
                 )
             ],
@@ -60,7 +62,7 @@ class SkillsDesktop extends StatelessWidget {
                       horizontal: 16.0,
                     ),
                     backgroundColor: CustomColor.bgLight2,
-                    label: Text(skillItems[i]["title"]),
+                    label: Text(skillItems[i]["title"], style: TextStyle(color: CustomColor.textFieldBg),),
                     avatar: Image.asset(skillItems[i]["img"]),
                   ),
               ],

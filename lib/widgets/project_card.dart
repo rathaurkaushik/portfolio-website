@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:my_portfolio/utils/project_utils.dart';
-
-import '../constants/colors.dart';
+import 'package:portfolio_website/constant/colors.dart';
+import 'package:portfolio_website/utils/project_utils.dart';
 import 'dart:js' as js;
 
 class ProjectCardWidget extends StatelessWidget {
@@ -108,6 +107,13 @@ class ProjectCardWidget extends StatelessWidget {
                       ),
                     ),
                   ),
+                if(project.githubLink != null)
+                  Padding(padding: const EdgeInsets.only(left: 6),child: InkWell(
+                    onTap: (){
+                      js.context.callMethod("open", [project.githubLink]);
+                    },
+                    child: Image.asset("assets/github.png", width: 17,),
+                  ),)
               ],
             ),
           )

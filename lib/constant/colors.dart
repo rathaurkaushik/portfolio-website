@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:flutter/material.dart'; // Required for gradients
 
 class CustomColor {
   static const Color scaffoldBg = Color(0xff252734);
@@ -10,4 +11,19 @@ class CustomColor {
   static const Color yellowPrimary = Color(0xffFFAF29);
   static const Color whitePrimary = Color(0xffEAEAEB);
   static const Color whiteSecondary = Color(0xffC8C9CE);
+  static const Color handToneColor = Color(0xffDFAA8B);
+
+  // Example Linear Gradient
+
+  static const LinearGradient vibrantGradient = LinearGradient(
+    colors: [
+      Color(0xFF12c2e9),
+      Color(0xFFc471ed),
+      Color(0xFFf64f59),
+    ],
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+  );
+
 }
+

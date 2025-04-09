@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio_website/constant/colors.dart';
 
 
 class SiteLogo extends StatelessWidget {
@@ -11,13 +12,24 @@ class SiteLogo extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
-      child: const Text(
-        "AK",
+      child:
+      Text(
+        " Kaushik_  ",
         style: TextStyle(
-          fontSize: 22,
+          fontFamily: 'Aptos',
+          fontSize: 20,
+          height: 1.5,
           fontWeight: FontWeight.bold,
-          decoration: TextDecoration.underline,
-          color: CustomColor.yellowSecondary,
+          foreground: Paint()
+            ..shader = const LinearGradient(
+              colors: [
+                Color(0xFFC471ED),
+                Color(0xFF12C2E9),
+                Color(0xFFF64F59),
+              ],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ).createShader(Rect.fromLTWH(40, 20, 60, 50)),
         ),
       ),
     );
