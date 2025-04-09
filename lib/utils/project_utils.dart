@@ -27,6 +27,7 @@ List<ProjectUtils> hobbyProjectUtils = [
     subtitle: 'My PortFolio Website',
     webLink: 'https://portfolio-a8ed3.web.app',
     githubLink: 'https://github.com/rathaurkaushik/portfolio-website',
+
   ),
 ];
 

@@ -38,7 +38,7 @@ class ContactSection extends StatelessWidget {
   Widget _buildDesktopLayout() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      crossAxisAlignment: CrossAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         // Left Content
         Flexible(
@@ -57,17 +57,19 @@ class ContactSection extends StatelessWidget {
               const SizedBox(height: 20),
               Row(
                 children: [
-                  _snsIcon("assets/github.png", SnsLinks.github, "#Kaushik"),
-                  const SizedBox(width: 16),
+                  _snsIcon("assets/mail.png", SnsLinks.email, "@Kaushik"),
+                  SizedBox(width: 16,),
                   _snsIcon("assets/linkedin.png", SnsLinks.linkedIn, "Kaushik-dev"),
                 ],
               ),
               const SizedBox(height: 12),
               Row(
                 children: [
+
+                  _snsIcon("assets/github.png", SnsLinks.github, "#Kaushik"),
+                  SizedBox(width: 16,),
+
                   _snsIcon("assets/instagram.png", SnsLinks.instagram, "@Kaushik_15"),
-                  const SizedBox(width: 16),
-                  _snsIcon("assets/mail.png", SnsLinks.email, "@Kaushik"),
                 ],
               ),
             ],
@@ -107,7 +109,7 @@ class ContactSection extends StatelessWidget {
         Wrap(
           spacing: 12,
           runSpacing: 12,
-          alignment: WrapAlignment.start,
+          alignment: WrapAlignment.spaceEvenly,
           children: [
             _snsIcon("assets/mail.png", SnsLinks.email, "@Kaushik"),
             _snsIcon("assets/linkedin.png", SnsLinks.linkedIn, "Kaushik-dev"),
@@ -142,7 +144,7 @@ class ContactSection extends StatelessWidget {
           const SizedBox(width: 8),
           ShaderMask(
             shaderCallback: (bounds) => const LinearGradient(
-              colors: [Colors.cyan, Colors.purple],
+              colors: [Colors.cyanAccent, Colors.purpleAccent,Colors.amberAccent],
             ).createShader(bounds),
             child: Text(
               text,
