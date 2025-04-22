@@ -9,7 +9,7 @@ class ContactSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(100),
+      padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 20),
       child: Card(
         elevation: 3,
         color: CustomColor.bgLight1,
@@ -94,8 +94,16 @@ class ContactSection extends StatelessWidget {
   /// Mobile Layout
   Widget _buildMobileLayout() {
     return Column(
+      mainAxisSize: MainAxisSize.max,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        SizedBox(
+          height: 180,
+          child: Image.asset(
+            "assets/mail_box.png",
+            fit: BoxFit.contain,
+          ),
+        ),
         _gradientTitle("Get in touch"),
         const SizedBox(height: 16),
         const Text(
@@ -117,16 +125,8 @@ class ContactSection extends StatelessWidget {
             _snsIcon("assets/instagram.png", SnsLinks.instagram, "@Kaushik_15"),
           ],
         ),
-        const SizedBox(height: 30),
-        Center(
-          child: SizedBox(
-            height: 180,
-            child: Image.asset(
-              "assets/mail_box.png",
-              fit: BoxFit.contain,
-            ),
-          ),
-        ),
+
+
       ],
     );
   }
