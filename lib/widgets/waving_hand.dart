@@ -4,7 +4,8 @@ import 'dart:math';
 import 'package:portfolio_website/constant/colors.dart';
 
 class WavingHandIcon extends StatefulWidget {
-  const WavingHandIcon({super.key});
+  final double handSize;
+  const WavingHandIcon({super.key, required this.handSize});
 
   @override
   State<WavingHandIcon> createState() => _WavingHandIconState();
@@ -45,7 +46,7 @@ class _WavingHandIconState extends State<WavingHandIcon>
           child: Icon(
             Icons.waving_hand,
             color: CustomColor.handToneColor,
-            size: 70,
+            size: widget.handSize,
           ),
         );
       },

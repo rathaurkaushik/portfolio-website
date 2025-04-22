@@ -35,7 +35,7 @@ class _HomePageState extends State<HomePage> {
       return Scaffold(
         key: scaffoldKey,
         backgroundColor: CustomColor.scaffoldBg,
-        endDrawer: constraints.maxWidth >= kMinDesktopWidth
+        endDrawer: constraints.maxWidth >= mobileWidth
             ? null
             : DrawerMobile(onNavItemTap: (int navIndex) {
           scaffoldKey.currentState?.closeEndDrawer();
@@ -63,7 +63,7 @@ class _HomePageState extends State<HomePage> {
                 SizedBox(key: navbarKeys.first),
 
                 // MAIN
-                if (constraints.maxWidth >= kMinDesktopWidth)
+                  if (constraints.maxWidth >= mobileWidth)
                   HeaderDesktop(onNavMenuTap: (int navIndex) {
                     scrollToSection(navIndex);
                   })
@@ -75,7 +75,7 @@ class _HomePageState extends State<HomePage> {
                     },
                   ),
 
-                if (constraints.maxWidth >= kMinDesktopWidth)
+                if (constraints.maxWidth >= mobileWidth)
                   const MainDesktop()
                 else
                   const MainMobile(),
@@ -101,7 +101,7 @@ class _HomePageState extends State<HomePage> {
                       const SizedBox(height: 50),
 
                       // platforms and skills
-                      if (constraints.maxWidth >= kMedDesktopWidth)
+                      if (constraints.maxWidth >= desktopWidth)
                         const SkillsDesktop()
                       else
                         const SkillsMobile(),
