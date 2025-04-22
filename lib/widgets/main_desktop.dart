@@ -24,8 +24,8 @@ class MainDesktop extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 // Intro message
-                Row(
-                  mainAxisSize: MainAxisSize.min,
+                Wrap(
+                  crossAxisAlignment: WrapCrossAlignment.center,
 
                   children: [
                     Text(
@@ -48,7 +48,7 @@ class MainDesktop extends StatelessWidget {
                               ).createShader(Rect.fromLTWH(100, 100, 200, 70)),
                       ),
                     ),
-                    Flexible(child: const WavingHandIcon()),
+                    Flexible(child: const WavingHandIcon(handSize:60,)),
                   ],
                 ),
                 const SizedBox(height: 15),
@@ -101,22 +101,29 @@ class MainDesktop extends StatelessWidget {
                     ),
                   ],
                 ),
-                child: ClipOval(
-                  child: Stack(
-                    children: [
-                      Positioned(
-                        left: -180, // 👈 shift image to the left to center the face
-                        top: 0,
-                        child: Image.asset(
-                          "assets/myImage.png",
-                          width: 460,  // 👈 wider image so your face fits inside the visible circle
-                          height: 300,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+                child:   CircleAvatar(
+                  backgroundColor: Colors.transparent,
+                  backgroundImage: AssetImage("assets/myImage.png"),
+                  radius: 50,
+
+                )
+
+                // ClipOval(
+                //   child: Stack(
+                //     children: [
+                //       Positioned(
+                //         left: -180, // 👈 shift image to the left to center the face
+                //         top: 0,
+                //         child: Image.asset(
+                //           "assets/myImage.png",
+                //           width: 460,  // 👈 wider image so your face fits inside the visible circle
+                //           height: 300,
+                //           fit: BoxFit.cover,
+                //         ),
+                //       ),
+                //     ],
+                //   ),
+                // ),
               ),
             ),
           )
