@@ -18,9 +18,31 @@ class HeaderMobile extends StatelessWidget {
       margin: const EdgeInsets.fromLTRB(40, 5, 20, 5),
       decoration: kHederDecoration,
       child: Row(
+        // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           SiteLogo(
             onTap: onLogoTap,
+          ),
+const Spacer(),
+          Text(
+            " Kaushik_  ",
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 30,
+              fontFamily: 'Aptos',
+              height: 1.5,
+              fontWeight: FontWeight.bold,
+              foreground: Paint()
+                ..shader = const LinearGradient(
+                  colors: [
+                    Color(0xFFC471ED),
+                    Color(0xFF12C2E9),
+                    Color(0xFFF64F59),
+                  ],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                ).createShader(Rect.fromLTWH(200, 50, 50, 35)),
+            ),
           ),
           const Spacer(),
           IconButton(
