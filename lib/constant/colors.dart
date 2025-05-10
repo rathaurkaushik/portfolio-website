@@ -12,6 +12,15 @@ class CustomColor {
   static const Color whitePrimary = Color(0xffEAEAEB);
   static const Color whiteSecondary = Color(0xffC8C9CE);
   static const Color handToneColor = Color(0xffDFAA8B);
+  static const Color experienceBackground = Color(0xffd8b4fe);
+  static const Color experience = Color(0xffc084fc);
+  static const Color webDev = Color(0xff14b8a6);
+  static const Color data_title = Color(0xfff79292);
+  static const Color data_skill = Color(0xfffecfb4);
+
+
+
+
 
   // Example Linear Gradient
 

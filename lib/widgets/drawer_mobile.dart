@@ -4,11 +4,11 @@ import 'package:portfolio_website/constant/nav_items.dart';
 
 
 class DrawerMobile extends StatelessWidget {
+  final Function(int) onNavItemTap;
   const DrawerMobile({
     super.key,
     required this.onNavItemTap,
   });
-  final Function(int) onNavItemTap;
   @override
   Widget build(BuildContext context) {
     return Drawer(

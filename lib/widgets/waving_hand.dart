@@ -21,10 +21,10 @@ class _WavingHandIconState extends State<WavingHandIcon>
     super.initState();
     _controller = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 800),
+      duration: const Duration(milliseconds: 600),
     )..repeat(reverse: true);
 
-    _rotation = Tween<double>(begin: -0.2, end: 0.1).animate(
+    _rotation = Tween<double>(begin: -0.2, end: 0.2).animate(
       CurvedAnimation(parent: _controller, curve: Curves.easeInOut),
     );
   }

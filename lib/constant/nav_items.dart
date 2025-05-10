@@ -5,6 +5,7 @@ List<String> navTitles = [
   "Skills",
   "Projects",
   "Contact",
+  "Resume"
 ];
 
 List<IconData> navIcons = [

@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:portfolio_website/constant/colors.dart';
+import 'package:portfolio_website/widgets/down_arrow_animated.dart';
+import 'package:portfolio_website/widgets/direction_divider.dart';
+import 'package:portfolio_website/widgets/experience_section.dart';
 import 'package:portfolio_website/widgets/waving_hand.dart';
 
 class MainDesktop extends StatelessWidget {
@@ -12,56 +16,144 @@ class MainDesktop extends StatelessWidget {
     final screenWidth = screenSize.width;
 
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 20.0),
-      height: screenHeight / 1.7,
+      margin: const EdgeInsets.symmetric(horizontal: 200, vertical: 100),
       constraints: const BoxConstraints(minHeight: 350.0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Expanded(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // Intro message
-                Wrap(
-                  crossAxisAlignment: WrapCrossAlignment.center,
-
+          /// Top Section: Intro & Image
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Expanded(
+                flex: 1,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      " Kaushik_  ",
-                      style: TextStyle(
-                        fontSize: 60,
-                        fontFamily: 'Aptos',
-                        height: 1.5,
-                        fontWeight: FontWeight.bold,
-                        foreground:
-                            Paint()
-                              ..shader = const LinearGradient(
-                                colors: [
-                                  Color(0xFFC471ED),
-                                  Color(0xFF12C2E9),
-                                  Color(0xFFF64F59),
-                                ],
-                                begin: Alignment.topLeft,
-                                end: Alignment.bottomRight,
-                              ).createShader(Rect.fromLTWH(100, 100, 200, 70)),
+                    Wrap(
+                      crossAxisAlignment: WrapCrossAlignment.center,
+                      children: [
+                        Text(
+                          "Kaushik_  ",
+                          style: TextStyle(
+                            fontSize: 50,
+                            height: 1.5,
+                            fontWeight: FontWeight.bold,
+                            foreground:
+                                Paint()
+                                  ..shader = const LinearGradient(
+                                    colors: [
+                                      Color(0xFFC471ED),
+                                      Color(0xFF12C2E9),
+                                      Color(0xFFF64F59),
+                                    ],
+                                    begin: Alignment.topLeft,
+                                    end: Alignment.bottomRight,
+                                  ).createShader(
+                                    const Rect.fromLTWH(200, 200, 200, 70),
+                                  ),
+                          ),
+                        ),
+                        const WavingHandIcon(handSize: 50),
+                      ],
+                    ),
+                    const SizedBox(height: 15),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                      child: Text(
+                        "App developer, Bit Beast Pvt. Ltd, UI/UX designer, and a lifelong learner based in India 🇮🇳, with a love for all things colorful and creative. Debugging life 🛠️ with a cup of stories ☕📘 and a cat on my lap 🐱.",
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: 'Aptos',
+                          color: CustomColor.whitePrimary,
+                        ),
                       ),
                     ),
-                    Flexible(child: const WavingHandIcon(handSize:60,)),
                   ],
                 ),
-                const SizedBox(height: 15),
-                // Contact info
+              ),
+              Expanded(
+                flex: 1,
+                child: Center(
+                  child: Container(
+                    width: 300,
+                    height: 300,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      gradient: const RadialGradient(
+                        colors: [Color(0xFF3b3b3b), Colors.black12],
+                        center: Alignment.center,
+                        radius: 0.5,
+                      ),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.blueAccent.withOpacity(0.2),
+                          blurRadius: 30,
+                          spreadRadius: 10,
+                          offset: const Offset(-10, 0),
+                        ),
+                      ],
+                    ),
+                    child: ClipOval(
+                      child: Image.asset(
+                        "assets/myImage.png",
+                        width: 300,
+                        height: 300,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+
+          const SizedBox(height: 50),
+          const Center(child: DrawArrowAnimated()),
+          const SizedBox(height: 300),
+
+          /// Experience Badge
+          Center(
+            child: Stack(
+              children: [
+                Container(
+                  height: 150,
+                  width: 150,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: CustomColor.experienceBackground,
+                  ),
+                ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                  child: Text(
-                    "App developer, Bit Beast Pvt. Ltd, UI/UX designer, and a lifelong learner based in India 🇮🇳, with a love for all things colorful and creative. Debugging life 🛠️ with a cup of stories ☕📘 and a cat on my lap 🐱.",
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                      fontFamily: 'Aptos',
-                      color: CustomColor.whitePrimary,
+                  padding: const EdgeInsets.all(16.0),
+                  child: Container(
+                    height: 115,
+                    width: 118,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: CustomColor.experience,
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "02",
+                          style: TextStyle(
+                            fontSize: 50,
+                            color: CustomColor.whitePrimary,
+                          ),
+                        ),
+                        Text(
+                          "Years of Experience",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: CustomColor.whitePrimary,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
@@ -69,73 +161,161 @@ class MainDesktop extends StatelessWidget {
             ),
           ),
 
-// my image 
+          const SizedBox(height: 30),
 
-          Expanded(
-            child: Center(
-              child: Container(
-                width: 300,
-                height: 300,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  gradient: const RadialGradient(
-                    colors: [
-                      Color(0xFF3b3b3b),
-                      Colors.black12,
-                    ],
-                    center: Alignment.center,
-                    radius: 0.6,
-                  ),
-                  boxShadow: [
-                    // BoxShadow(
-                    //   color: Colors.purpleAccent.withOpacity(0.5),
-                    //   blurRadius: 12,
-                    //   spreadRadius: 5,
-                    //   offset: const Offset(0, 0),
-                    // ),
-                    BoxShadow(
-                      color: Colors.blueAccent.withOpacity(0.2),
-                      blurRadius: 30,
-                      spreadRadius: 10,
-                      offset: const Offset(-10, 0),
+          /// Summary Paragraph
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 150, vertical: 15),
+            child: Text(
+              textAlign: TextAlign.center,
+              'Over the past three years, I’ve cultivated strong problem-solving and critical thinking abilities, enabling me to quickly adapt to new technologies and evolving workflows. Below is a snapshot of the skill set I’ve acquired—and continue to expand—as I grow both personally and professionally.',
+              style: GoogleFonts.poppins(
+                fontSize: 20,
+                color: CustomColor.whitePrimary,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+          ),
+
+          const SizedBox(height: 30),
+
+          /// Experience Heading
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const DirectionalDivider(direction: 'left'),
+              Text(
+                "Experience",
+                style: TextStyle(fontSize: 14, color: Colors.grey.shade500),
+              ),
+              const DirectionalDivider(direction: 'right'),
+            ],
+          ),
+          SizedBox(height: 100),
+
+          /// Experience Rows
+          Column(
+            children: [
+              /// First Row (App Dev & Blockchain)
+              IntrinsicHeight(
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    ///app dev
+                    Expanded(
+                      child: ExperienceSection(
+                        title: 'App Dev',
+                        titleColor: Colors.purple.shade100,
+                        description:
+                            'Specialized in creating beautiful and user-friendly web and mobile applications using Flutter and frontend technologies. I bring creativity and attention to detail to every project I craft.',
+                        skills: [
+                          {'label': 'Flutter', 'color': Colors.blueAccent.shade100},
+                          {'label': 'Dart', 'color': Colors.blueAccent.shade100},
+                          {'label': 'Kotlin', 'color': Colors.blueAccent.shade100},
+                        ],
+                        imagePath: 'assets/experience/app.png',
+                        textColor: CustomColor.whitePrimary,
+                        imageHeight: screenHeight * 0.3,
+                        imageWidth: screenWidth * 0.3,
+                      ),
+                    ),
+                    Container(
+                      width: 2.0,
+                      height: screenHeight * 1.25,
+                      color: CustomColor.yellowPrimary,
+                      margin: const EdgeInsets.symmetric(horizontal: 90.0),
+                    ),
+
+                    /// backend
+                    Expanded(
+                      child: ExperienceSection(
+                        title: 'Backend',
+                        titleColor: CustomColor.webDev,
+                        topPadding: 540,
+                        description:
+                            "Working on creating robust backend solutions that prioritize security, scalability, and decentralization in modern applications.",
+                        skills: [
+                          {'label': 'Node Js', 'color': CustomColor.webDev},
+                          {
+                            'label': 'Mongo DB',
+                            'color': CustomColor.webDev,
+                          },
+                          {'label': 'Sql', 'color': CustomColor.webDev},
+                          {'label': 'Firebase', 'color': CustomColor.webDev},
+
+                        ],
+                        imagePath: 'assets/experience/backend.png',
+                        textColor: CustomColor.whitePrimary,
+                        imageHeight: screenHeight * 0.3,
+                        imageWidth: screenWidth * 0.3,
+                      ),
                     ),
                   ],
                 ),
-                child:   CircleAvatar(
-                  backgroundColor: Colors.transparent,
-                  backgroundImage: AssetImage("assets/myImage.png"),
-                  radius: 50,
-
-                )
-
-                // ClipOval(
-                //   child: Stack(
-                //     children: [
-                //       Positioned(
-                //         left: -180, // 👈 shift image to the left to center the face
-                //         top: 0,
-                //         child: Image.asset(
-                //           "assets/myImage.png",
-                //           width: 460,  // 👈 wider image so your face fits inside the visible circle
-                //           height: 300,
-                //           fit: BoxFit.cover,
-                //         ),
-                //       ),
-                //     ],
-                //   ),
-                // ),
               ),
-            ),
-          )
 
+              // const SizedBox(height: 60),
 
+              /// Second Row (AI Projects & Web Dev)
+              IntrinsicHeight(
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Expanded(
+                      child: ExperienceSection(
+                        title: 'Data Science',
+                        titleColor: CustomColor.data_title,
+                        topPadding: 100,
+                        description:
+                        'Learning Data Science with Python and libraries like Pandas, NumPy, and Scikit-learn. Exploring data analysis, visualization, and machine learning techniques.'
+,                        skills: [
+                        {'label': 'TensorFlow', 'color': CustomColor.data_skill},
+                        {'label': 'Python', 'color': CustomColor.data_skill},
+                        {'label': 'Pandas', 'color': CustomColor.data_skill}, // Added Data Science skill
+                      ],
 
+                        imagePath: 'assets/experience/data_science',
+                        textColor: CustomColor.whitePrimary,
+                        imageHeight: screenHeight * 0.3,
+                        imageWidth: screenWidth * 0.3,
+                      ),
+                    ),
+                    Container(
+                      width: 2.0,
+                      height: screenHeight * 1.28,
+                      color: CustomColor.yellowPrimary,
+                      margin: const EdgeInsets.symmetric(horizontal: 90.0),
+                    ),
 
-
-
-
-
-
+                    Expanded(
+                      child: ExperienceSection(
+                        title: 'Blockchain',
+                        titleColor: CustomColor.experienceBackground,
+                        topPadding: 600,
+                        description:
+                            'Exploring the evolving Web3 ecosystem focused on decentralized security layers...',
+                        skills: [
+                          {
+                            'label': 'Solidity',
+                            'color': CustomColor.experience,
+                          },
+                          {'label': 'Hardhat', 'color': CustomColor.experience},
+                          {
+                            'label': 'OpenZeppelin',
+                            'color': CustomColor.experience,
+                          },
+                        ],
+                        imagePath: 'assets/experience/blockchain.png',
+                        textColor: CustomColor.whitePrimary,
+                        imageHeight: screenHeight * 0.3,
+                        imageWidth: screenWidth * 0.3,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ],
       ),
     );

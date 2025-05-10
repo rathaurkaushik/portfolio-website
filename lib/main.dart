@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:portfolio_website/pages/home_page.dart';
 import 'package:portfolio_website/styles/theme.dart';
 
@@ -14,7 +15,9 @@ class MyPortfolioApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+
       theme: ThemeData(
+        textTheme: GoogleFonts.poppinsTextTheme(),
         fontFamily: 'Aptos',
       ),
 

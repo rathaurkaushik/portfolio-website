@@ -1,2 +1,2 @@
-const double mobileWidth = 600.0;
-const double desktopWidth = 800.0;
+const double mobileWidth = 750.0;
+const double desktopWidth = 1200.0;
