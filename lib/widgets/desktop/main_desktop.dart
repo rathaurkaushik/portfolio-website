@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:portfolio_website/constant/colors.dart';
+import 'package:portfolio_website/pages/home_page.dart';
+import 'package:portfolio_website/widgets/button_widget.dart';
 import 'package:portfolio_website/widgets/down_arrow_animated.dart';
 import 'package:portfolio_website/widgets/direction_divider.dart';
 import 'package:portfolio_website/widgets/experience_section.dart';
@@ -31,32 +33,28 @@ class MainDesktop extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Wrap(
-                      crossAxisAlignment: WrapCrossAlignment.center,
-                      children: [
-                        Text(
-                          "Kaushik_  ",
-                          style: TextStyle(
-                            fontSize: 50,
-                            height: 1.5,
-                            fontWeight: FontWeight.bold,
-                            foreground:
-                                Paint()
-                                  ..shader = const LinearGradient(
-                                    colors: [
-                                      Color(0xFFC471ED),
-                                      Color(0xFF12C2E9),
-                                      Color(0xFFF64F59),
-                                    ],
-                                    begin: Alignment.topLeft,
-                                    end: Alignment.bottomRight,
-                                  ).createShader(
-                                    const Rect.fromLTWH(200, 200, 200, 70),
-                                  ),
-                          ),
+                    ShaderMask(
+                      shaderCallback: (bounds) {
+                        return const LinearGradient(
+                          colors: [
+                            Color(0xFFC471ED),
+                            Color(0xFF12C2E9),
+                            Color(0xFFF64F59),
+                          ],
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                        ).createShader(Rect.fromLTWH(0, 0, bounds.width, bounds.height));
+                      },
+                      blendMode: BlendMode.srcIn, // Required to apply gradient to text
+                      child: const Text(
+                        "Kaushik_  ",
+                        style: TextStyle(
+                          fontSize: 50,
+                          height: 1.5,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white, // Important!
                         ),
-                        const WavingHandIcon(handSize: 50),
-                      ],
+                      ),
                     ),
                     const SizedBox(height: 15),
                     Padding(
@@ -165,12 +163,12 @@ class MainDesktop extends StatelessWidget {
 
           /// Summary Paragraph
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 150, vertical: 15),
+            padding: const EdgeInsets.symmetric(horizontal: 100, vertical: 15),
             child: Text(
               textAlign: TextAlign.center,
               'Over the past three years, I’ve cultivated strong problem-solving and critical thinking abilities, enabling me to quickly adapt to new technologies and evolving workflows. Below is a snapshot of the skill set I’ve acquired—and continue to expand—as I grow both personally and professionally.',
               style: GoogleFonts.poppins(
-                fontSize: 20,
+                fontSize: 18,
                 color: CustomColor.whitePrimary,
                 fontWeight: FontWeight.w500,
               ),
@@ -194,6 +192,7 @@ class MainDesktop extends StatelessWidget {
           SizedBox(height: 100),
 
           /// Experience Rows
+          ///
           Column(
             children: [
               /// First Row (App Dev & Blockchain)
@@ -221,7 +220,7 @@ class MainDesktop extends StatelessWidget {
                     ),
                     Container(
                       width: 2.0,
-                      height: screenHeight * 1.25,
+                      height: screenHeight * 1.45,
                       color: CustomColor.yellowPrimary,
                       margin: const EdgeInsets.symmetric(horizontal: 90.0),
                     ),
@@ -237,12 +236,10 @@ class MainDesktop extends StatelessWidget {
                         skills: [
                           {'label': 'Node Js', 'color': CustomColor.webDev},
                           {
-                            'label': 'Mongo DB',
+                            'label': 'No Sql',
                             'color': CustomColor.webDev,
                           },
                           {'label': 'Sql', 'color': CustomColor.webDev},
-                          {'label': 'Firebase', 'color': CustomColor.webDev},
-
                         ],
                         imagePath: 'assets/experience/backend.png',
                         textColor: CustomColor.whitePrimary,
@@ -274,7 +271,7 @@ class MainDesktop extends StatelessWidget {
                         {'label': 'Pandas', 'color': CustomColor.data_skill}, // Added Data Science skill
                       ],
 
-                        imagePath: 'assets/experience/data_science',
+                        imagePath: 'assets/experience/data_science.png',
                         textColor: CustomColor.whitePrimary,
                         imageHeight: screenHeight * 0.3,
                         imageWidth: screenWidth * 0.3,
@@ -282,7 +279,7 @@ class MainDesktop extends StatelessWidget {
                     ),
                     Container(
                       width: 2.0,
-                      height: screenHeight * 1.28,
+                      height: screenHeight * 1.30,
                       color: CustomColor.yellowPrimary,
                       margin: const EdgeInsets.symmetric(horizontal: 90.0),
                     ),
@@ -314,8 +311,26 @@ class MainDesktop extends StatelessWidget {
                   ],
                 ),
               ),
+              SizedBox(height: 30,),
+              Text(
+                "that was a short information about the domain that I have previously worked on.\nwhile you're at it, have a look at few chosen works that i have created using above domain.\nAnd if you want to know more, you can download my resume",
+
+                textAlign: TextAlign.center,
+                style: TextStyle(
+
+                    color: CustomColor.whitePrimary,fontSize: 20, fontWeight: FontWeight.w500, fontFamily: 'Aptos'),),
             ],
           ),
+          SizedBox(height: 40,),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ButtonWidget(title: 'Resume', color: CustomColor.experience, iconAssetPath: 'assets/page.png',onTap: () => Navigator.pushNamed(context, '/work'),),
+              SizedBox(width: 50,),
+              ButtonWidget(title: 'Project', color: Colors.blueAccent, iconAssetPath: 'assets/work_arrow.png',onTap: ()=> Navigator.pushNamed(context, '/work'),),
+
+            ],
+          )
         ],
       ),
     );

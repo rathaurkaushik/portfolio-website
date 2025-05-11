@@ -28,7 +28,10 @@ class ExperienceSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return
+
+
+      Padding(
       padding: EdgeInsets.only(top: topPadding),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -50,8 +53,8 @@ class ExperienceSection extends StatelessWidget {
           ),
           const SizedBox(height: 10.0),
           Wrap(
-            spacing: 8,
-            runSpacing: 8,
+            // spacing: 2,
+            // runSpacing: 2,
             children: skills
                 .map((skill) => ExperienceSkill(
               label: skill['label'],

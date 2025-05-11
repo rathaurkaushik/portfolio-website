@@ -5,14 +5,17 @@ import 'package:portfolio_website/constant/sns_links.dart';
 import 'package:portfolio_website/widgets/contact_section.dart';
 import 'package:portfolio_website/widgets/drawer_mobile.dart';
 import 'package:portfolio_website/widgets/footer.dart';
-import 'package:portfolio_website/widgets/header_desktop.dart';
+import 'package:portfolio_website/widgets/desktop/header_desktop.dart';
 import 'package:portfolio_website/widgets/header_mobile.dart';
-import 'package:portfolio_website/widgets/main_desktop.dart';
+import 'package:portfolio_website/widgets/desktop/main_desktop.dart';
 import 'package:portfolio_website/widgets/main_mobile.dart';
 import 'package:portfolio_website/widgets/projects_section.dart';
 import 'package:portfolio_website/widgets/skills_desktop.dart';
 import 'package:portfolio_website/widgets/skills_mobile.dart';
 import 'dart:js' as js;
+
+import 'package:portfolio_website/widgets/tablet/header_tablet.dart';
+import 'package:portfolio_website/widgets/tablet/main_tablet.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -63,10 +66,18 @@ class _HomePageState extends State<HomePage> {
                 SizedBox(key: navbarKeys.first),
 
                 // MAIN
-                  if (constraints.maxWidth >= mobileWidth)
-                  HeaderDesktop(onNavMenuTap: (int navIndex) {
-                    scrollToSection(navIndex);
-                  })
+                  if (constraints.maxWidth >= tabletWidth)
+                    HeaderDesktop(
+                      onNavMenuTap: (int navIndex) {
+                        scrollToSection(navIndex);
+                      },
+                      page: 0, // <-- this must be a valid `int` value from your state
+                    )
+
+                  else if(constraints.maxWidth >= mobileWidth && constraints.maxWidth <= tabletWidth)
+                    HeaderTablet(onNavMenuTap: (int navIndex) {
+                      scrollToSection(navIndex);
+                    })
                 else
                   HeaderMobile(
                     onLogoTap: () {},
@@ -75,8 +86,13 @@ class _HomePageState extends State<HomePage> {
                     },
                   ),
 
-                if (constraints.maxWidth >= mobileWidth)
+                /// --------- Main Screen ----------///
+                ///
+                ///
+                if (constraints.maxWidth >= tabletWidth)
                   const MainDesktop()
+                else if(constraints.maxWidth >= mobileWidth && constraints.maxWidth <= tabletWidth)
+                  const MainTablet()
                 else
                   const MainMobile(),
 
@@ -101,18 +117,12 @@ class _HomePageState extends State<HomePage> {
                       const SizedBox(height: 50),
 
                       // platforms and skills
-                      if (constraints.maxWidth >= desktopWidth)
+                      if (constraints.maxWidth >= tabletWidth)
                         const SkillsDesktop()
                       else
                         const SkillsMobile(),
                     ],
                   ),
-                ),
-                const SizedBox(height: 30),
-
-                // PROJECTS
-                ProjectsSection(
-                  key: navbarKeys[2],
                 ),
 
                 const SizedBox(height: 30),

@@ -1,2 +1,3 @@
-const double mobileWidth = 750.0;
-const double desktopWidth = 1200.0;
+// Breakpoints for responsive design
+const double mobileWidth = 780.0;
+const double tabletWidth = 1030.0;

@@ -17,15 +17,20 @@ class ProjectsSection extends StatelessWidget {
         children: [
           // Work projects title
           const Text(
-            "Work projects",
+            "Works",
             style: TextStyle(
-              fontSize: 24,
+              fontSize: 50,
+              fontFamily: 'Aptos',
               fontWeight: FontWeight.bold,
-              color: CustomColor.whitePrimary,
+              color: CustomColor.yellowPrimary,
             ),
           ),
           const SizedBox(height: 50),
+          
+          Text('From websites with pastel hues to intelligent ML models,\ninfused with little bit of playfulness. So go ahead, and take a \nlook around 💖',textAlign: TextAlign.center, style: TextStyle(color: CustomColor.whitePrimary,fontSize: 20,fontFamily: 'Aptos'),),
           // Work projects cards
+          const SizedBox(height: 50),
+
           ConstrainedBox(
             constraints: const BoxConstraints(maxWidth: 900),
             child: Wrap(
@@ -39,31 +44,7 @@ class ProjectsSection extends StatelessWidget {
               ],
             ),
           ),
-          const SizedBox(height: 80),
-          // Hobby projects title
-          const Text(
-            "Hobby projects",
-            style: TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
-              color: CustomColor.whitePrimary,
-            ),
-          ),
-          const SizedBox(height: 50),
-          // Hobby projects cards
-          ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 900),
-            child: Wrap(
-              spacing: 25,
-              runSpacing: 25,
-              children: [
-                for (int i = 0; i < hobbyProjectUtils.length; i++)
-                  ProjectCardWidget(
-                    project: hobbyProjectUtils[i],
-                  ),
-              ],
-            ),
-          ),
+
         ],
       ),
     );
