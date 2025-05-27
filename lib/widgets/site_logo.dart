@@ -9,7 +9,7 @@ class SiteLogo extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: CircleAvatar(
-        // radius: 30, // adjust as needed
+        radius: 15, // adjust as needed
         backgroundColor: Colors.transparent,
         backgroundImage: AssetImage("assets/icon.png"),
       ),

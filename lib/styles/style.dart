@@ -3,7 +3,7 @@ import 'package:portfolio_website/constant/colors.dart';
 
 
 BoxDecoration kHederDecoration = BoxDecoration(
-  color: CustomColor.bgLight1,
+  color: CustomColor.scaffoldBg,
 
   borderRadius: BorderRadius.circular(15),
 );

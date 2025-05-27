@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:portfolio_website/constant/colors.dart';
 import 'package:portfolio_website/constant/nav_items.dart';
-
+import 'package:portfolio_website/utils/navigation_controller.dart';
 
 class DrawerMobile extends StatelessWidget {
-  final Function(int) onNavItemTap;
-  const DrawerMobile({
-    super.key,
-    required this.onNavItemTap,
-  });
+  DrawerMobile({super.key});
+
+  final navController = Get.put(NavigationController());
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -25,28 +25,33 @@ class DrawerMobile extends StatelessWidget {
               ),
               child: IconButton(
                 onPressed: () {
-                  Navigator.of(context).pop();
+                  Navigator.of(context).pop(); // Close the drawer
                 },
-                icon: const Icon(Icons.close),
+                icon: const Icon(Icons.close, color: Colors.white),
               ),
             ),
           ),
           for (int i = 0; i < navIcons.length; i++)
-            ListTile(
-              contentPadding: const EdgeInsets.symmetric(
-                horizontal: 30.0,
-              ),
-              titleTextStyle: const TextStyle(
-                color: CustomColor.whitePrimary,
-                fontWeight: FontWeight.w600,
-                fontSize: 16,
-              ),
-              onTap: () {
-                onNavItemTap(i);
-              },
-              leading: Icon(navIcons[i]),
-              title: Text(navTitles[i]),
-            )
+            Obx(() {
+              final isSelected = navController.currentRoute.value == navController.routeNames[i];
+              return ListTile(
+                contentPadding: const EdgeInsets.symmetric(horizontal: 30.0),
+                titleTextStyle: TextStyle(
+                  color: isSelected ? Colors.amberAccent : CustomColor.whitePrimary,
+                  fontWeight: FontWeight.w600,
+                  fontSize: 16,
+                ),
+                onTap: () {
+                  Navigator.of(context).pop(); // Close the drawer
+                  navController.onNavMenuTap(i);
+                },
+                leading: Icon(
+                  navIcons[i],
+                  color: isSelected ? Colors.amberAccent : CustomColor.whitePrimary,
+                ),
+                title: Text(navTitles[i]),
+              );
+            }),
         ],
       ),
     );

@@ -57,8 +57,8 @@ class ExperienceTabletSection extends StatelessWidget {
               ),
               const SizedBox(height: 10.0),
               Wrap(
-                spacing: 8,
-                runSpacing: 8,
+                crossAxisAlignment: WrapCrossAlignment.start,
+                alignment: WrapAlignment.start,
                 children: skills
                     .map((skill) => ExperienceSkill(
                   label: skill['label'],

@@ -4,7 +4,7 @@ import 'package:portfolio_website/constant/colors.dart';
 import 'package:portfolio_website/constant/sns_links.dart';
 
 class ContactSection extends StatelessWidget {
-  const ContactSection({super.key});
+  const   ContactSection({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -164,7 +164,7 @@ class ContactSection extends StatelessWidget {
   Widget _gradientTitle(String text) {
     return ShaderMask(
       shaderCallback: (bounds) => const LinearGradient(
-        colors: [Colors.cyan, Colors.purple],
+        colors: [Colors.cyan, Colors.purpleAccent,Colors.yellowAccent],
       ).createShader(bounds),
       child: Text(
         text,

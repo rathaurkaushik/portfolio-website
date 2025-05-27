@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:portfolio_website/pages/home_page.dart';
-import 'package:portfolio_website/pages/work.dart';
-import 'package:portfolio_website/styles/theme.dart';
-
+import 'package:portfolio_website/view/home/home_controller.dart';
+import 'package:portfolio_website/view/home/home_page.dart';
+import 'package:portfolio_website/view/work/work.dart';
+import 'package:portfolio_website/view/tech/tech_controller.dart';
+import 'package:portfolio_website/view/tech/tech_page.dart';
 
 void main() {
   runApp(const MyPortfolioApp());
@@ -14,24 +16,27 @@ class MyPortfolioApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Kaushik Rathaur | App Dev',
       theme: ThemeData(
-brightness: Brightness.light,
+        brightness: Brightness.light,
         textTheme: GoogleFonts.poppinsTextTheme(),
         fontFamily: 'Aptos',
       ),
+      initialBinding: BindingsBuilder(() {
+        Get.put(HomeController());
+        Get.put(TechStackController());
+      }),
       initialRoute: '/',
-      routes: {
-        '/': (context) => const HomePage(),
-        '/work': (context) => const WorkPage(),
-        // '/about': (context) => const AboutPage(),
-        // '/tech': (context) => const TechPage(),
-        // '/mark': (context) => const MarkPage(),
-        // '/resume': (context) => const ResumePage(),
-      },
-
+      getPages: [
+        GetPage(name: '/', page: () => const HomePage()),
+        GetPage(name: '/work', page: () => const WorkPage()),
+        GetPage(name: '/tech', page: () => TechPageShowcase()),
+        // GetPage(name: '/tech', page: () => const TechPage()),
+        // GetPage(name: '/mark', page: () => const MarkPage()),
+        // GetPage(name: '/resume', page: () => const ResumePage()),
+      ],
     );
   }
 }

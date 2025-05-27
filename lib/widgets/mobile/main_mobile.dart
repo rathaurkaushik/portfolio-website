@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:portfolio_website/constant/colors.dart';
 import 'package:portfolio_website/widgets/button_widget.dart';
-import 'package:portfolio_website/widgets/down_arrow_animated.dart';
 import 'package:portfolio_website/widgets/direction_divider.dart';
-import 'package:portfolio_website/widgets/experience_section.dart';
 import 'package:portfolio_website/widgets/tablet/experience_tablet_section.dart';
 import 'package:portfolio_website/widgets/waving_hand.dart';
 
-class MainTablet extends StatelessWidget {
-  const MainTablet({super.key});
+class MainMobile extends StatelessWidget {
+  const MainMobile({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,106 +16,108 @@ class MainTablet extends StatelessWidget {
 
     return SingleChildScrollView(
       child: Container(
-        margin: const EdgeInsets.symmetric(horizontal: 100, vertical: 100),
-        constraints: const BoxConstraints(minHeight: 350.0),
+        margin: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 30.0),
+        constraints: const BoxConstraints(minHeight: 560.0),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
           children: [
-            /// Top Section: Intro & Image
-            Wrap(
-              crossAxisAlignment: WrapCrossAlignment.center,
+            // Profile image
+            SizedBox(height: 10),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                ShaderMask(
-                  shaderCallback: (bounds) {
-                    return const LinearGradient(
-                      colors: [
-                        Color(0xFFC471ED),
-                        Color(0xFF12C2E9),
-                        Color(0xFFF64F59),
-                      ],
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                    ).createShader(Rect.fromLTWH(0, 0, bounds.width, bounds.height));
-                  },
-                  blendMode: BlendMode.srcIn, // Required to apply gradient to text
-                  child: const Text(
-                    "Kaushik_  ",
-                    style: TextStyle(
-                      fontSize: 30,
-                      height: 1.5,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white, // Important!
-                    ),
+                Text(
+                  " Kaushik_  ",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 42,
+                    fontFamily: 'Aptos',
+                    height: 1.5,
+                    fontWeight: FontWeight.bold,
+                    foreground:
+                        Paint()
+                          ..shader = const LinearGradient(
+                            colors: [
+                              Color(0xFFC471ED),
+                              Color(0xFF12C2E9),
+                              Color(0xFFF64F59),
+                            ],
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                          ).createShader(Rect.fromLTWH(200, 50, 200, 70)),
                   ),
                 ),
-                const WavingHandIcon(handSize: 35),
+                Flexible(child: const WavingHandIcon(handSize: 40)),
               ],
             ),
-
-
-
-            const SizedBox(height: 25),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 100.0),
-              child: Text(
-                "App developer, Bit Beast Pvt. Ltd, UI/UX designer, and a lifelong learner based in India 🇮🇳, with a love for all things colorful and creative. Debugging life 🛠️ with a cup of stories ☕📘 and a cat on my lap 🐱.",
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                  fontFamily: 'Aptos',
-                  color: CustomColor.whitePrimary,
+            SizedBox(height: 40),
+            Container(
+              width: 200,
+              height: 200,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                gradient: const RadialGradient(
+                  colors: [Color(0xFF3b3b3b), Colors.black12],
+                  center: Alignment.center,
+                  radius: 0.4,
                 ),
-              ),
-            ),
-            const SizedBox(height: 60),
-
-            /// Image Section
-            SizedBox(
-              height: 300,
-              width: 300,
-              child: Center(
-                child: Container(
-                  width: 300,
-                  height: 300,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    gradient: const RadialGradient(
-                      colors: [Color(0xFF3b3b3b), Colors.black12],
-                      center: Alignment.center,
-                      radius: 0.5,
-                    ),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.blueAccent.withOpacity(0.2),
-                        blurRadius: 30,
-                        spreadRadius: 10,
-                        offset: const Offset(-10, 0),
-                      ),
-                    ],
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.blueAccent.withOpacity(0.2),
+                    blurRadius: 30,
+                    spreadRadius: 10,
+                    offset: const Offset(-10, 0),
                   ),
-                  child: ClipOval(
-                    child: Image.asset(
-                      "assets/myImage.png",
-                      width: 300,
-                      height: 300,
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),
+                ],
               ),
+              child: CircleAvatar(
+                backgroundColor: Colors.transparent,
+                backgroundImage: AssetImage("assets/myImage.png"),
+                radius: 50,
+              ),
+              // ClipOval(
+              //   child: Stack(
+              //     children: [
+              //       Positioned(
+              //         left: -110,
+              //         top: 0,
+              //         child: Image.asset(
+              //           "assets/myImage.png",
+              //           color: Colors.transparent,
+              //           width: 300,
+              //           height: 200,
+              //           fit: BoxFit.cover,
+              //         ),
+              //       ),
+              //     ],
+              //   ),
+              // ),
             ),
 
-            const SizedBox(height: 50),
-            const Center(child: DrawArrowAnimated()),
-            const SizedBox(height: 200),
+            const SizedBox(height: 30),
 
+            // Name
+            const SizedBox(height: 20),
+
+            // Intro Text
+            Text(
+              "App developer at Bit Beast Pvt. Ltd, UI/UX designer, and a lifelong learner from India 🇮🇳. Debugging life 🛠️ with stories ☕📘 and a cat 🐱 on my lap.",
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w600,
+                fontFamily: 'Aptos',
+                color: CustomColor.whitePrimary,
+              ),
+              textAlign: TextAlign.center,
+            ),
+            SizedBox(height: 30),
             /// Experience Badge
             Center(
               child: Stack(
                 children: [
                   Container(
-                    height: 150,
-                    width: 150,
+                    height: 130,
+                    width: 135,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
                       color: CustomColor.experienceBackground,
@@ -127,8 +126,8 @@ class MainTablet extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(16.0),
                     child: Container(
-                      height: 115,
-                      width: 118,
+                      height: 100,
+                      width: 103,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         color: CustomColor.experience,
@@ -139,9 +138,9 @@ class MainTablet extends StatelessWidget {
                           Text(
                             "02",
                             style: TextStyle(
-                              fontFamily: 'Aptos',
-                              fontSize: 50,
+                              fontSize: 30,
                               color: CustomColor.whitePrimary,
+                              fontWeight: FontWeight.bold
                             ),
                           ),
                           Text(
@@ -161,27 +160,6 @@ class MainTablet extends StatelessWidget {
             ),
 
             const SizedBox(height: 30),
-
-            /// Summary Paragraph
-            Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 100,
-                vertical: 15,
-              ),
-              child: Text(
-                textAlign: TextAlign.center,
-                'Over the past three years, I’ve cultivated strong problem-solving and critical thinking abilities, enabling me to quickly adapt to new technologies and evolving workflows. Below is a snapshot of the skill set I’ve acquired—and continue to expand—as I grow both personally and professionally.',
-                style: GoogleFonts.poppins(
-                  fontSize: 16,
-                  color: CustomColor.whitePrimary,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-            ),
-
-            const SizedBox(height: 30),
-
-            /// Experience Heading
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -193,12 +171,10 @@ class MainTablet extends StatelessWidget {
                 const DirectionalDivider(direction: 'right'),
               ],
             ),
-            const SizedBox(height: 100),
+            const SizedBox(height: 50),
 
             /// Experience Rows
-            Padding(
-              padding: const EdgeInsets.only(left: 90.0),
-              child: Column(
+           Column(
                 children: [
                   /// First Row (App Dev & Backend)
                   Row(
@@ -221,7 +197,10 @@ class MainTablet extends StatelessWidget {
                               'label': 'Flutter',
                               'color': Colors.blueAccent.shade200,
                             },
-                            {'label': 'Dart', 'color': Colors.blueAccent.shade200},
+                            {
+                              'label': 'Dart',
+                              'color': Colors.blueAccent.shade200,
+                            },
                             {
                               'label': 'Kotlin',
                               'color': Colors.blueAccent.shade200,
@@ -240,7 +219,7 @@ class MainTablet extends StatelessWidget {
                     children: [
                       Container(
                         width: 2.0,
-                        height: screenHeight * 0.6,
+                        height: screenHeight * 0.65,
                         color: CustomColor.webDev,
                         margin: const EdgeInsets.symmetric(horizontal: 20.0),
                       ),
@@ -268,7 +247,7 @@ class MainTablet extends StatelessWidget {
                     children: [
                       Container(
                         width: 2.0,
-                        height: screenHeight * 0.6,
+                        height: screenHeight * 0.63,
                         color: CustomColor.data_skill,
                         margin: const EdgeInsets.symmetric(horizontal: 20.0),
                       ),
@@ -304,7 +283,7 @@ class MainTablet extends StatelessWidget {
                     children: [
                       Container(
                         width: 2.0,
-                        height: screenHeight * 0.6,
+                        height: screenHeight * 0.62,
                         color: CustomColor.experience,
                         margin: const EdgeInsets.symmetric(horizontal: 20.0),
                       ),
@@ -337,14 +316,18 @@ class MainTablet extends StatelessWidget {
                       ),
                     ],
                   ),
-                  SizedBox(height: 30,),
-                  Text("that was a short information about the domain that I have previously worked on. while you're at it, have a look at few chosen works that i have created using above domain. And if you want to know more, you can download my resume",
+                  SizedBox(height: 30),
+                  Text(
+                    "that was a short information about the domain that I have previously worked on. while you're at it, have a look at few chosen works that i have created using above domain. And if you want to know more, you can download my resume",
 
                     textAlign: TextAlign.center,
                     style: TextStyle(
-
-                      color: CustomColor.whitePrimary,fontSize: 18, fontWeight: FontWeight.w500, fontFamily: 'Aptos'),),
-
+                      color: CustomColor.whitePrimary,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w500,
+                      fontFamily: 'Aptos',
+                    ),
+                  ),
                   SizedBox(height: 40,),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -355,10 +338,9 @@ class MainTablet extends StatelessWidget {
 
                     ],
                   )
-
                 ],
               ),
-            ),
+
           ],
         ),
       ),

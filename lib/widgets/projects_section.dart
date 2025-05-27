@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:portfolio_website/constant/colors.dart';
+import 'package:portfolio_website/models/project_model.dart';
 
-import '../utils/project_utils.dart';
 import 'project_card.dart';
 
 class ProjectsSection extends StatelessWidget {
@@ -19,10 +20,11 @@ class ProjectsSection extends StatelessWidget {
           const Text(
             "Works",
             style: TextStyle(
-              fontSize: 50,
+              inherit: true,
+              fontSize: 70,
               fontFamily: 'Aptos',
               fontWeight: FontWeight.bold,
-              color: CustomColor.yellowPrimary,
+              color: CustomColor.webDev,
             ),
           ),
           const SizedBox(height: 50),

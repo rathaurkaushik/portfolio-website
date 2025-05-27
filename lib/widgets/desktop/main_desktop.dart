@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:portfolio_website/constant/colors.dart';
-import 'package:portfolio_website/pages/home_page.dart';
 import 'package:portfolio_website/widgets/button_widget.dart';
 import 'package:portfolio_website/widgets/down_arrow_animated.dart';
 import 'package:portfolio_website/widgets/direction_divider.dart';
@@ -25,7 +24,7 @@ class MainDesktop extends StatelessWidget {
         children: [
           /// Top Section: Intro & Image
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Expanded(
                 flex: 1,
@@ -204,7 +203,7 @@ class MainDesktop extends StatelessWidget {
                     Expanded(
                       child: ExperienceSection(
                         title: 'App Dev',
-                        titleColor: Colors.purple.shade100,
+                        titleColor: Colors.blueAccent.shade100,
                         description:
                             'Specialized in creating beautiful and user-friendly web and mobile applications using Flutter and frontend technologies. I bring creativity and attention to detail to every project I craft.',
                         skills: [
@@ -262,7 +261,7 @@ class MainDesktop extends StatelessWidget {
                       child: ExperienceSection(
                         title: 'Data Science',
                         titleColor: CustomColor.data_title,
-                        topPadding: 100,
+                        // topPadding: 50,
                         description:
                         'Learning Data Science with Python and libraries like Pandas, NumPy, and Scikit-learn. Exploring data analysis, visualization, and machine learning techniques.'
 ,                        skills: [
@@ -279,7 +278,7 @@ class MainDesktop extends StatelessWidget {
                     ),
                     Container(
                       width: 2.0,
-                      height: screenHeight * 1.30,
+                      height: screenHeight * 1.15,
                       color: CustomColor.yellowPrimary,
                       margin: const EdgeInsets.symmetric(horizontal: 90.0),
                     ),
@@ -288,7 +287,7 @@ class MainDesktop extends StatelessWidget {
                       child: ExperienceSection(
                         title: 'Blockchain',
                         titleColor: CustomColor.experienceBackground,
-                        topPadding: 600,
+                        topPadding: 500,
                         description:
                             'Exploring the evolving Web3 ecosystem focused on decentralized security layers...',
                         skills: [
