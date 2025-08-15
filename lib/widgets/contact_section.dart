@@ -9,7 +9,7 @@ class ContactSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 160, vertical: 20),
       child: Card(
         elevation: 3,
         color: CustomColor.bgLight1,
@@ -37,7 +37,7 @@ class ContactSection extends StatelessWidget {
   /// Desktop Layout
   Widget _buildDesktopLayout() {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         // Left Content
@@ -52,39 +52,31 @@ class ContactSection extends StatelessWidget {
                 "If you have any queries or would like to discuss potential opportunities,\nplease don't hesitate to reach out to me using the given links:",
                 style: TextStyle(fontSize: 16, color: Colors.white70),
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 15 ),
               const Divider(thickness: 1),
               const SizedBox(height: 20),
               Row(
                 children: [
-                  _snsIcon("assets/mail.png", SnsLinks.email, "@Kaushik"),
-                  SizedBox(width: 16,),
-                  _snsIcon("assets/linkedin.png", SnsLinks.linkedIn, "Kaushik-dev"),
+                  _snsIcon("assets/mail.png", SnsLinks.email, "@Kaushik", Colors.redAccent), // Gmail red
+                  _snsIcon("assets/linkedin.png", SnsLinks.linkedIn, "Kaushik-dev", Color(0xFF0A66C2)), // LinkedIn blue
                 ],
               ),
               const SizedBox(height: 12),
               Row(
                 children: [
-
-                  _snsIcon("assets/github.png", SnsLinks.github, "#Kaushik"),
-                  SizedBox(width: 16,),
-
-                  _snsIcon("assets/instagram.png", SnsLinks.instagram, "@Kaushik_15"),
+                  _snsIcon("assets/github.png", SnsLinks.github, "#Kaushik", Colors.white), // GitHub white
+                  _snsIcon("assets/instagram.png", SnsLinks.instagram, "@Kaushik_15", Colors.pinkAccent), // Instagram pink
                 ],
               ),
             ],
           ),
         ),
-        const SizedBox(width: 30),
         // Right Content (Mailbox image)
         Flexible(
           flex: 1,
-          child: AspectRatio(
-            aspectRatio: 1,
-            child: Image.asset(
-              "assets/mail_box.png",
-              fit: BoxFit.contain,
-            ),
+          child: Image.asset(
+            "assets/mail_box.png",
+            fit: BoxFit.contain,
           ),
         ),
       ],
@@ -119,46 +111,44 @@ class ContactSection extends StatelessWidget {
           runSpacing: 12,
           alignment: WrapAlignment.spaceEvenly,
           children: [
-            _snsIcon("assets/mail.png", SnsLinks.email, "@Kaushik"),
-            _snsIcon("assets/linkedin.png", SnsLinks.linkedIn, "Kaushik-dev"),
-            _snsIcon("assets/github.png", SnsLinks.github, "#Kaushik"),
-            _snsIcon("assets/instagram.png", SnsLinks.instagram, "@Kaushik_15"),
+            _snsIcon("assets/mail.png", SnsLinks.email, "@Kaushik", Colors.redAccent), // Gmail red
+            _snsIcon("assets/linkedin.png", SnsLinks.linkedIn, "Kaushik-dev", Color(0xFF0A66C2)), // LinkedIn blue
+            _snsIcon("assets/github.png", SnsLinks.github, "#Kaushik", Colors.white), // GitHub white
+            _snsIcon("assets/instagram.png", SnsLinks.instagram, "@Kaushik_15", Colors.pinkAccent), // Instagram pink
           ],
         ),
-
 
       ],
     );
   }
 
   /// Social Icon Widget
-  static Widget _snsIcon(String assetPath, String url, String text) {
+  static Widget _snsIcon(String assetPath, String url, String text, Color textColor) {
     return InkWell(
       onTap: () {
         js.context.callMethod('open', [url]);
       },
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Image.asset(assetPath, width: 28),
-          const SizedBox(width: 8),
-          ShaderMask(
-            shaderCallback: (bounds) => const LinearGradient(
-              colors: [Colors.cyanAccent, Colors.purpleAccent,Colors.amberAccent],
-            ).createShader(bounds),
-            child: Text(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 6.0, horizontal: 8.0), // better padding
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Image.asset(assetPath, width: 28),
+            const SizedBox(width: 10), // spacing between icon & text
+            Text(
               text,
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
-                color: Colors.white,
+                color: textColor,
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
+
 
   /// Gradient Title
   Widget _gradientTitle(String text) {
