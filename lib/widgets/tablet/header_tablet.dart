@@ -1,8 +1,8 @@
 import 'dart:ui';
+import 'dart:math'; // ✅ min() ke liye import
 import 'package:flutter/material.dart';
 import 'package:portfolio_website/constant/colors.dart';
 import 'package:portfolio_website/constant/nav_items.dart';
-import 'package:portfolio_website/styles/style.dart'; // Assuming this is used elsewhere
 import 'package:get/get.dart';
 import 'package:portfolio_website/utils/navigation_controller.dart';
 
@@ -14,38 +14,39 @@ class HeaderTablet extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        // 🎨 Gradient Background with Blur - MODIFIED HERE
+        // 🎨 Gradient Background with Blur
         Container(
-          width: MediaQuery.of(context).size.width * 0.75, // Increased width for overflow
-          height: 50.0, // Increased height for overflow
-          margin: const EdgeInsets.only(top: 20), // Adjusted margin for visual centering
-          decoration: BoxDecoration( // Changed from const BoxDecoration
-            gradient: LinearGradient( // Changed from RadialGradient
+          width: MediaQuery.of(context).size.width * 0.75,
+          height: 50.0,
+          margin: const EdgeInsets.only(top: 20),
+          decoration: BoxDecoration(
+            gradient: const LinearGradient(
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
               colors: [
-                // Approximations of the colors from your image.
-                // Fine-tune these for the exact match.
-                Color(0xFF2E2F33), // Dark grey/blue (top-left)
-                Color(0xFF5B3C7B), // Purplish
-                Color(0xFF4C6B8D), // Bluish
-                Color(0xFF7E6B5A), // Brownish/darker orange (bottom-right)
+                // Color(0xFF2E2F33),
+                CustomColor.yellowPrimary,
+                Colors.blue,
+                Colors.pink,
+                Color(0xFF7E6B5A),
+                Colors.red,
+                CustomColor.yellowSecondary,
+                CustomColor.experience,
               ],
             ),
-            borderRadius: BorderRadius.all(Radius.circular(20)),
+            borderRadius: const BorderRadius.all(Radius.circular(20)),
           ),
-          // ClipRRect removed here to allow the gradient to spread
           child: BackdropFilter(
-            filter: ImageFilter.blur(sigmaX: 40, sigmaY: 40),
+            filter: ImageFilter.blur(sigmaX: 70, sigmaY:   70),
             child: Container(
               color: Colors.black.withOpacity(0.3),
             ),
           ),
         ),
 
-        // 🌟 Foreground Nav Content (Remains mostly the same, adjusted width)
+        // 🌟 Foreground Nav Content
         Container(
-          width: MediaQuery.of(context).size.width * 0.75, // Original content width
+          width: MediaQuery.of(context).size.width * 0.75,
           height: 50.0,
           margin: const EdgeInsets.only(top: 20),
           padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -67,10 +68,10 @@ class HeaderTablet extends StatelessWidget {
                 },
                 blendMode: BlendMode.srcIn,
                 child: TextButton(
-                  onPressed: () => Get.toNamed('/'),
-                  child: const Text(
-                    "Kaushik_",
-                    style: TextStyle(
+                  onPressed: () => navController.changeRoute(routeNames[0]),
+                  child: Text(
+                    navTitles[0],
+                    style: const TextStyle(
                       fontSize: 18,
                       height: 1.3,
                       fontWeight: FontWeight.bold,
@@ -82,30 +83,33 @@ class HeaderTablet extends StatelessWidget {
 
               // Navigation Items
               Obx(() => Row(
-                children: List.generate(navTitles.length, (index) {
-                  final routeNames = ['/', '/work', '/tech', '/mark', '/resume']; // match your GetPages
-                  final route = routeNames[index];
+                children: List.generate(
+                  min(navTitles.length - 1, routeNames.length - 1), // ✅ safe limit
+                      (index) {
+                    final route = routeNames[index + 1];
+                    final title = navTitles[index + 1];
 
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 7),
-                    child: TextButton(
-                      onPressed: () => navController.changeRoute(route),
-                      child: Text(
-                        navTitles[index],
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w500,
-                          color: navController.currentRoute.value == route
-                              ? Colors.amberAccent
-                              : CustomColor.whitePrimary,
-                          decoration: navController.currentRoute.value == route
-                              ? TextDecoration.underline
-                              : TextDecoration.none,
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 7),
+                      child: TextButton(
+                        onPressed: () => navController.changeRoute(route),
+                        child: Text(
+                          title,
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500,
+                            color: navController.currentRoute.value == route
+                                ? Colors.amberAccent
+                                : CustomColor.whitePrimary,
+                            decoration: navController.currentRoute.value == route
+                                ? TextDecoration.underline
+                                : TextDecoration.none,
+                          ),
                         ),
                       ),
-                    ),
-                  );
-                }),
+                    );
+                  },
+                ),
               ))
             ],
           ),
