@@ -37,7 +37,7 @@ class _HoverImageCardState extends State<HoverImageCard> {
           clipBehavior: Clip.antiAlias,
           child: ClipRRect(
             borderRadius: BorderRadius.circular(20),
-            child: Image.asset(
+            child: Image.network(
               widget.imagePath,
               height: widget.height,
               width: widget.width,

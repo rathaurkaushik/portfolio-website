@@ -1,16 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:portfolio_website/constant/sns_links.dart';
 import 'dart:js' as js;
+import 'package:portfolio_website/constant/sns_links.dart';
 
 class HomeController extends GetxController {
   final scaffoldKey = GlobalKey<ScaffoldState>();
   final scrollController = ScrollController();
   final navbarKeys = List.generate(4, (_) => GlobalKey());
+  var isDrawerOpen = false.obs; // for animation toggle
+
+  void toggleDrawer() {
+    isDrawerOpen.value = !isDrawerOpen.value;
+  }
 
   void scrollToSection(int navIndex) {
+    toggleDrawer(); // close drawer after click
     if (navIndex == 4) {
-      js.context.callMethod('open', [SnsLinks.blog]);
+      js.context.callMethod('open', [SnsLinks.resume, "_blank"]);
       return;
     }
     final key = navbarKeys[navIndex];
@@ -21,3 +27,4 @@ class HomeController extends GetxController {
     );
   }
 }
+

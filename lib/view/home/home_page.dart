@@ -2,17 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:portfolio_website/constant/colors.dart';
 import 'package:portfolio_website/constant/size.dart';
-import 'package:portfolio_website/constant/sns_links.dart';
+
 import 'package:portfolio_website/widgets/contact_section.dart';
 import 'package:portfolio_website/widgets/drawer_mobile.dart';
-import 'package:portfolio_website/widgets/footer.dart';
+
 import 'package:portfolio_website/widgets/desktop/header_desktop.dart';
 import 'package:portfolio_website/widgets/mobile/header_mobile.dart';
 import 'package:portfolio_website/widgets/desktop/main_desktop.dart';
 import 'package:portfolio_website/widgets/mobile/main_mobile.dart';
-import 'package:portfolio_website/widgets/projects_section.dart';
-import 'package:portfolio_website/widgets/skills_desktop.dart';
-import 'package:portfolio_website/widgets/skills_mobile.dart';
+
 import 'package:portfolio_website/widgets/snsLink.dart';
 import 'package:portfolio_website/widgets/tablet/header_tablet.dart';
 import 'package:portfolio_website/widgets/tablet/main_tablet.dart';
