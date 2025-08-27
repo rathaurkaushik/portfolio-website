@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:portfolio_website/constant/colors.dart';
 import 'package:portfolio_website/view/tech/tech_controller.dart';
 
@@ -44,9 +45,10 @@ class TechSectionDesktop extends StatelessWidget {
             'Just like any other dev, I spend more time searching and experimenting tools\n'
                 'than coding senseful things 😎 — except now it’s called Data Engineering.',
             textAlign: TextAlign.center,
-            style: TextStyle(
+            style: GoogleFonts.openSans(
+              fontSize: screenWidth * 0.013,
+              fontWeight: FontWeight.w500,
               color: CustomColor.whitePrimary,
-              fontSize: screenWidth * 0.010,
             ),
           ),
           SizedBox(height: screenHeight * 0.06),
@@ -90,7 +92,7 @@ class TechSectionDesktop extends StatelessWidget {
                             borderRadius: BorderRadius.circular(20),
                           ),
                           padding: const EdgeInsets.all(10),
-                          child: Image.asset(
+                          child: Image.network(
                             tech.image,
                             height: screenHeight * 0.13,
                             width: screenHeight * 0.13,
@@ -196,7 +198,7 @@ class TechSectionDesktop extends StatelessWidget {
                       child: SizedBox(
                         width: screenWidth * 0.06,
                         height: screenWidth * 0.06,
-                        child: Image.asset(item.image, fit: BoxFit.contain),
+                        child: Image.network(item.image),
                       ),
                     ),
                   ),
