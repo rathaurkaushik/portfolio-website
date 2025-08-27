@@ -1,14 +1,42 @@
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:portfolio_website/constant/app_image.dart';
 import 'package:portfolio_website/constant/colors.dart';
+import 'package:portfolio_website/widgets/aimated_image.dart';
 import 'package:portfolio_website/widgets/button_widget.dart';
 import 'package:portfolio_website/widgets/down_arrow_animated.dart';
 import 'package:portfolio_website/widgets/direction_divider.dart';
 import 'package:portfolio_website/widgets/experience_section.dart';
 import 'package:portfolio_website/widgets/waving_hand.dart';
 
-class MainDesktop extends StatelessWidget {
+class MainDesktop extends StatefulWidget {
   const MainDesktop({super.key});
+
+  @override
+  State<MainDesktop> createState() => _MainDesktopState();
+}
+
+class _MainDesktopState extends State<MainDesktop>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+
+    // Animation controller to move gradient center up and down every second
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 1), // Speed control
+    )..repeat(reverse: true); // Move back and forth
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,6 +54,7 @@ class MainDesktop extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
+              // Left Side Text
               Expanded(
                 flex: 1,
                 child: Column(
@@ -42,28 +71,30 @@ class MainDesktop extends StatelessWidget {
                           ],
                           begin: Alignment.topLeft,
                           end: Alignment.bottomRight,
-                        ).createShader(Rect.fromLTWH(0, 0, bounds.width, bounds.height));
+                        ).createShader(
+                          Rect.fromLTWH(0, 0, bounds.width, bounds.height),
+                        );
                       },
-                      blendMode: BlendMode.srcIn, // Required to apply gradient to text
+                      blendMode: BlendMode.srcIn,
                       child: const Text(
                         "Kaushik_  ",
                         style: TextStyle(
                           fontSize: 50,
                           height: 1.5,
                           fontWeight: FontWeight.bold,
-                          color: Colors.white, // Important!
+                          color: Colors.white,
                         ),
                       ),
                     ),
                     const SizedBox(height: 15),
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                      padding: const EdgeInsets.only(right: 150.0),
                       child: Text(
                         "App developer, Bit Beast Pvt. Ltd, UI/UX designer, and a lifelong learner based in India 🇮🇳, with a love for all things colorful and creative. Debugging life 🛠️ with a cup of stories ☕📘 and a cat on my lap 🐱.",
-                        style: TextStyle(
+                        style: GoogleFonts.openSans(
                           fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          fontFamily: 'Aptos',
+                          fontWeight: FontWeight.w500,
+                          decoration: TextDecoration.underline,
                           color: CustomColor.whitePrimary,
                         ),
                       ),
@@ -71,39 +102,67 @@ class MainDesktop extends StatelessWidget {
                   ],
                 ),
               ),
-              Expanded(
-                flex: 1,
-                child: Center(
-                  child: Container(
-                    width: 300,
-                    height: 300,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      gradient: const RadialGradient(
-                        colors: [Color(0xFF3b3b3b), Colors.black12],
-                        center: Alignment.center,
-                        radius: 0.5,
-                      ),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.blueAccent.withOpacity(0.2),
-                          blurRadius: 30,
-                          spreadRadius: 10,
-                          offset: const Offset(-10, 0),
-                        ),
-                      ],
-                    ),
-                    child: ClipOval(
-                      child: Image.asset(
-                        "assets/myImage.png",
-                        width: 300,
-                        height: 300,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
-                ),
+
+              // Right Side Image with Moving Gradient Background
+              AnimatedWaveAvatar(
+                size: 300,
+                image: AppImages.my_image,
+                amplitude: 5, // zyada wobble chahiye to 12–14
+                secondaryAmp: 6, // subtle shimmer
+                lobes: 1, // 4 corners feel
+                duration: const Duration(
+                  seconds: 15,
+                ), // speed control (lower = faster)
+                strokeWidth: 3,
               ),
+
+              // Expanded(
+              //   flex: 1,
+              //   child: Center(
+              //     // AnimatedBuilder to update gradient center position
+              //     child: AnimatedBuilder(
+              //       animation: _controller,
+              //       builder: (context, _) {
+              //         final t = _controller.value; // 0 → 1
+              //         // Gradient center Y shift (-0.3 to 0.3)
+              //         final dy = lerpDouble(-0.3, 0.3, t)!;
+              //
+              //         return Container(
+              //           width: 300,
+              //           height: 300,
+              //           decoration: BoxDecoration(
+              //             shape: BoxShape.circle,
+              //             // Moving Radial Gradient background
+              //             gradient: RadialGradient(
+              //               colors: const [
+              //                 Color(0xFF3b3b3b),
+              //                 Colors.black12,
+              //               ],
+              //               center: Alignment(0, dy),
+              //               radius: 0.5,
+              //             ),
+              //             boxShadow: [
+              //               BoxShadow(
+              //                 color: Colors.blueAccent.withOpacity(0.2),
+              //                 blurRadius: 30,
+              //                 spreadRadius: 10,
+              //                 offset: const Offset(-10, 0),
+              //               ),
+              //             ],
+              //           ),
+              //           child: ClipOval(
+              //             child: Image.asset(
+              //               "assets/myImage.png",
+              //               width: 300,
+              //               height: 300,
+              //               fit: BoxFit.cover,
+              //             ),
+              //           ),
+              //         );
+              //       },
+              //     ),
+              //   ),
+              // ),
             ],
           ),
 
@@ -166,10 +225,11 @@ class MainDesktop extends StatelessWidget {
             child: Text(
               textAlign: TextAlign.center,
               'Over the past three years, I’ve cultivated strong problem-solving and critical thinking abilities, enabling me to quickly adapt to new technologies and evolving workflows. Below is a snapshot of the skill set I’ve acquired—and continue to expand—as I grow both personally and professionally.',
-              style: GoogleFonts.poppins(
-                fontSize: 18,
-                color: CustomColor.whitePrimary,
+              style: GoogleFonts.openSans(
+                fontSize: 20,
                 fontWeight: FontWeight.w500,
+                decoration: TextDecoration.underline,
+                color: CustomColor.whitePrimary,
               ),
             ),
           ),
@@ -191,86 +251,29 @@ class MainDesktop extends StatelessWidget {
           SizedBox(height: 100),
 
           /// Experience Rows
-          ///
           Column(
             children: [
-              /// First Row (App Dev & Blockchain)
-              IntrinsicHeight(
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    ///app dev
-                    Expanded(
-                      child: ExperienceSection(
-                        title: 'App Dev',
-                        titleColor: Colors.blueAccent.shade100,
-                        description:
-                            'Specialized in creating beautiful and user-friendly web and mobile applications using Flutter and frontend technologies. I bring creativity and attention to detail to every project I craft.',
-                        skills: [
-                          {'label': 'Flutter', 'color': Colors.blueAccent.shade100},
-                          {'label': 'Dart', 'color': Colors.blueAccent.shade100},
-                          {'label': 'Kotlin', 'color': Colors.blueAccent.shade100},
-                        ],
-                        imagePath: 'assets/experience/app.png',
-                        textColor: CustomColor.whitePrimary,
-                        imageHeight: screenHeight * 0.3,
-                        imageWidth: screenWidth * 0.3,
-                      ),
-                    ),
-                    Container(
-                      width: 2.0,
-                      height: screenHeight * 1.45,
-                      color: CustomColor.yellowPrimary,
-                      margin: const EdgeInsets.symmetric(horizontal: 90.0),
-                    ),
-
-                    /// backend
-                    Expanded(
-                      child: ExperienceSection(
-                        title: 'Backend',
-                        titleColor: CustomColor.webDev,
-                        topPadding: 540,
-                        description:
-                            "Working on creating robust backend solutions that prioritize security, scalability, and decentralization in modern applications.",
-                        skills: [
-                          {'label': 'Node Js', 'color': CustomColor.webDev},
-                          {
-                            'label': 'No Sql',
-                            'color': CustomColor.webDev,
-                          },
-                          {'label': 'Sql', 'color': CustomColor.webDev},
-                        ],
-                        imagePath: 'assets/experience/backend.png',
-                        textColor: CustomColor.whitePrimary,
-                        imageHeight: screenHeight * 0.3,
-                        imageWidth: screenWidth * 0.3,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-
-              // const SizedBox(height: 60),
-
-              /// Second Row (AI Projects & Web Dev)
+              /// First Row (App Dev & Backend)
               IntrinsicHeight(
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Expanded(
                       child: ExperienceSection(
-                        title: 'Data Science',
+                        title: 'Data Engineer',
                         titleColor: CustomColor.data_title,
-                        // topPadding: 50,
                         description:
-                        'Learning Data Science with Python and libraries like Pandas, NumPy, and Scikit-learn. Exploring data analysis, visualization, and machine learning techniques.'
-,                        skills: [
-                        {'label': 'TensorFlow', 'color': CustomColor.data_skill},
-                        {'label': 'Python', 'color': CustomColor.data_skill},
-                        {'label': 'Pandas', 'color': CustomColor.data_skill}, // Added Data Science skill
-                      ],
-
-                        imagePath: 'assets/experience/data_science.png',
+                            'Learning Data Science with Python and libraries like Pandas, NumPy, and Scikit-learn. Exploring data analysis, visualization, and machine learning techniques.',
+                        skills: [
+                          {
+                            'label': 'Azure',
+                            'color': CustomColor.data_skill,
+                          },
+                          {'label': 'Python', 'color': CustomColor.data_skill},
+                          {'label': 'spark', 'color': CustomColor.data_skill},
+                          {'label': 'databricks', 'color': CustomColor.data_skill},
+                        ],
+                        imagePath: AppImages.data_engineer,
                         textColor: CustomColor.whitePrimary,
                         imageHeight: screenHeight * 0.3,
                         imageWidth: screenWidth * 0.3,
@@ -282,7 +285,6 @@ class MainDesktop extends StatelessWidget {
                       color: CustomColor.yellowPrimary,
                       margin: const EdgeInsets.symmetric(horizontal: 90.0),
                     ),
-
                     Expanded(
                       child: ExperienceSection(
                         title: 'Blockchain',
@@ -301,7 +303,7 @@ class MainDesktop extends StatelessWidget {
                             'color': CustomColor.experience,
                           },
                         ],
-                        imagePath: 'assets/experience/blockchain.png',
+                        imagePath: AppImages.block_chain,
                         textColor: CustomColor.whitePrimary,
                         imageHeight: screenHeight * 0.3,
                         imageWidth: screenWidth * 0.3,
@@ -310,26 +312,99 @@ class MainDesktop extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(height: 30,),
+
+              /// Second Row (Data Science & Blockchain)
+              IntrinsicHeight(
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Expanded(
+                      child: ExperienceSection(
+                        title: 'App Dev',
+                        titleColor: Colors.blueAccent.shade100,
+                        description:
+                            'Specialized in creating beautiful and user-friendly web and mobile applications using Flutter and frontend technologies. I bring creativity and attention to detail to every project I craft.',
+                        skills: [
+                          {
+                            'label': 'Flutter',
+                            'color': Colors.blueAccent.shade100,
+                          },
+                          {
+                            'label': 'Dart',
+                            'color': Colors.blueAccent.shade100,
+                          },
+                          {
+                            'label': 'Kotlin',
+                            'color': Colors.blueAccent.shade100,
+                          },
+                        ],
+                        imagePath: AppImages.app,
+                        textColor: CustomColor.whitePrimary,
+                        imageHeight: screenHeight * 0.3,
+                        imageWidth: screenWidth * 0.3,
+                      ),
+                    ),
+                    Container(
+                      width: 2.0,
+                      height: screenHeight * 1.45,
+                      color: CustomColor.yellowPrimary,
+                      margin: const EdgeInsets.symmetric(horizontal: 90.0),
+                    ),
+                    Expanded(
+                      child: ExperienceSection(
+                        title: 'Backend',
+                        titleColor: CustomColor.webDev1,
+                        topPadding: 540,
+                        description:
+                            "Working on creating robust backend solutions that prioritize security, scalability, and decentralization in modern applications.",
+                        skills: [
+                          {'label': 'Node Js', 'color': CustomColor.webDev1},
+                          {'label': 'No Sql', 'color': CustomColor.webDev1},
+                          {'label': 'Sql', 'color': CustomColor.webDev1},
+                        ],
+                        imagePath: AppImages.backend,
+                        textColor: CustomColor.whitePrimary,
+                        imageHeight: screenHeight * 0.3,
+                        imageWidth: screenWidth * 0.3,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+
+              SizedBox(height: 30),
               Text(
                 "that was a short information about the domain that I have previously worked on.\nwhile you're at it, have a look at few chosen works that i have created using above domain.\nAnd if you want to know more, you can download my resume",
-
                 textAlign: TextAlign.center,
-                style: TextStyle(
-
-                    color: CustomColor.whitePrimary,fontSize: 20, fontWeight: FontWeight.w500, fontFamily: 'Aptos'),),
+                style: GoogleFonts.openSans(
+                  fontSize: screenWidth * 0.013,
+                  fontWeight: FontWeight.w500,
+                  decoration: TextDecoration.underline,
+                  color: CustomColor.whitePrimary,
+                ),
+              ),
             ],
           ),
-          SizedBox(height: 40,),
+
+          SizedBox(height: 40),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              ButtonWidget(title: 'Resume', color: CustomColor.experience, iconAssetPath: 'assets/page.png',onTap: () => Navigator.pushNamed(context, '/work'),),
-              SizedBox(width: 50,),
-              ButtonWidget(title: 'Project', color: Colors.blueAccent, iconAssetPath: 'assets/work_arrow.png',onTap: ()=> Navigator.pushNamed(context, '/work'),),
-
+              ButtonWidget(
+                title: 'Resume',
+                color: CustomColor.experience,
+                iconAssetPath: 'assets/page.png',
+                onTap: () => Navigator.pushNamed(context, '/work'),
+              ),
+              SizedBox(width: 50),
+              ButtonWidget(
+                title: 'Project',
+                color: Colors.blueAccent,
+                iconAssetPath: 'assets/work_arrow.png',
+                onTap: () => Navigator.pushNamed(context, '/work'),
+              ),
             ],
-          )
+          ),
         ],
       ),
     );

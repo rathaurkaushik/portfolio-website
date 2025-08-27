@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:portfolio_website/constant/app_image.dart';
 import 'package:portfolio_website/constant/colors.dart';
+import 'package:portfolio_website/widgets/aimated_image.dart';
 import 'package:portfolio_website/widgets/button_widget.dart';
 import 'package:portfolio_website/widgets/down_arrow_animated.dart';
 import 'package:portfolio_website/widgets/direction_divider.dart';
@@ -19,7 +21,7 @@ class MainTablet extends StatelessWidget {
 
     return SingleChildScrollView(
       child: Container(
-        margin: const EdgeInsets.symmetric(horizontal: 100, vertical: 100),
+        margin: const EdgeInsets.symmetric(horizontal:100, vertical: 50),
         constraints: const BoxConstraints(minHeight: 350.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -38,13 +40,16 @@ class MainTablet extends StatelessWidget {
                       ],
                       begin: Alignment.topLeft,
                       end: Alignment.bottomRight,
-                    ).createShader(Rect.fromLTWH(0, 0, bounds.width, bounds.height));
+                    ).createShader(
+                      Rect.fromLTWH(0, 0, bounds.width, bounds.height),
+                    );
                   },
-                  blendMode: BlendMode.srcIn, // Required to apply gradient to text
+                  blendMode:
+                      BlendMode.srcIn, // Required to apply gradient to text
                   child: const Text(
                     "Kaushik_  ",
                     style: TextStyle(
-                      fontSize: 30,
+                      fontSize: 40,
                       height: 1.5,
                       fontWeight: FontWeight.bold,
                       color: Colors.white, // Important!
@@ -55,17 +60,15 @@ class MainTablet extends StatelessWidget {
               ],
             ),
 
-
-
             const SizedBox(height: 25),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 100.0),
+              padding: const EdgeInsets.symmetric(horizontal: 70.0),
               child: Text(
                 "App developer, Bit Beast Pvt. Ltd, UI/UX designer, and a lifelong learner based in India 🇮🇳, with a love for all things colorful and creative. Debugging life 🛠️ with a cup of stories ☕📘 and a cat on my lap 🐱.",
-                style: TextStyle(
+                style: GoogleFonts.openSans(
                   fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                  fontFamily: 'Aptos',
+                  fontWeight: FontWeight.w500,
+                  decoration: TextDecoration.underline,
                   color: CustomColor.whitePrimary,
                 ),
               ),
@@ -73,44 +76,55 @@ class MainTablet extends StatelessWidget {
             const SizedBox(height: 60),
 
             /// Image Section
-            SizedBox(
-              height: 300,
-              width: 300,
-              child: Center(
-                child: Container(
-                  width: 300,
-                  height: 300,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    gradient: const RadialGradient(
-                      colors: [Color(0xFF3b3b3b), Colors.black12],
-                      center: Alignment.center,
-                      radius: 0.5,
-                    ),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.blueAccent.withOpacity(0.2),
-                        blurRadius: 30,
-                        spreadRadius: 10,
-                        offset: const Offset(-10, 0),
-                      ),
-                    ],
-                  ),
-                  child: ClipOval(
-                    child: Image.asset(
-                      "assets/myImage.png",
-                      width: 300,
-                      height: 300,
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),
-              ),
-            ),
+            AnimatedWaveAvatar(
+                            size: 250,
+                            image: AppImages.my_image,
+                            amplitude: 5, // zyada wobble chahiye to 12–14
+                            secondaryAmp: 6, // subtle shimmer
+                            lobes: 1, // 4 corners feel
+                            duration: const Duration(
+                              seconds: 15,
+                            ), // speed control (lower = faster)
+                            strokeWidth: 3,
+                          ),
+            // SizedBox(
+            //   height: 300,
+            //   width: 300,
+            //   child: Center(
+            //     child: Container(
+            //       width: 300,
+            //       height: 300,
+            //       decoration: BoxDecoration(
+            //         shape: BoxShape.circle,
+            //         gradient: const RadialGradient(
+            //           colors: [Color(0xFF3b3b3b), Colors.black12],
+            //           center: Alignment.center,
+            //           radius: 0.5,
+            //         ),
+            //         boxShadow: [
+            //           BoxShadow(
+            //             color: Colors.blueAccent.withOpacity(0.2),
+            //             blurRadius: 30,
+            //             spreadRadius: 10,
+            //             offset: const Offset(-10, 0),
+            //           ),
+            //         ],
+            //       ),
+            //       child: ClipOval(
+            //         child: Image.asset(
+            //           "assets/myImage.png",
+            //           width: 300,
+            //           height: 300,
+            //           fit: BoxFit.cover,
+            //         ),
+            //       ),
+            //     ),
+            //   ),
+            // ),
 
             const SizedBox(height: 50),
             const Center(child: DrawArrowAnimated()),
-            const SizedBox(height: 200),
+            const SizedBox(height: 150),
 
             /// Experience Badge
             Center(
@@ -165,16 +179,15 @@ class MainTablet extends StatelessWidget {
             /// Summary Paragraph
             Padding(
               padding: const EdgeInsets.symmetric(
-                horizontal: 100,
-                vertical: 15,
-              ),
+                horizontal: 70,),
               child: Text(
                 textAlign: TextAlign.center,
                 'Over the past three years, I’ve cultivated strong problem-solving and critical thinking abilities, enabling me to quickly adapt to new technologies and evolving workflows. Below is a snapshot of the skill set I’ve acquired—and continue to expand—as I grow both personally and professionally.',
-                style: GoogleFonts.poppins(
+                style: GoogleFonts.openSans(
                   fontSize: 16,
-                  color: CustomColor.whitePrimary,
                   fontWeight: FontWeight.w500,
+                  decoration: TextDecoration.underline,
+                  color: CustomColor.whitePrimary,
                 ),
               ),
             ),
@@ -197,17 +210,53 @@ class MainTablet extends StatelessWidget {
 
             /// Experience Rows
             Padding(
-              padding: const EdgeInsets.only(left: 90.0),
+              padding: const EdgeInsets.only(left: 50.0),
               child: Column(
                 children: [
                   /// First Row (App Dev & Backend)
+                  Row(
+                    children: [
+                      Container(
+                        width: 2.0,
+                        height: screenHeight * 0.6,
+                        color: CustomColor.data_skill,
+                        margin: const EdgeInsets.symmetric(horizontal: 20.0),
+                      ),
+                      Expanded(
+                        child: ExperienceTabletSection(
+                          title: 'Data Engineer',
+                          titleColor: CustomColor.data_title,
+                          description:
+                          'Learning Data Science with Python and libraries like Pandas, NumPy, and Scikit-learn. Exploring data analysis, visualization, and machine learning techniques.',
+                          skills: [
+                            {
+                              'label': 'TensorFlow',
+                              'color': CustomColor.data_skill,
+                            },
+                            {
+                              'label': 'Python',
+                              'color': CustomColor.data_skill,
+                            },
+                            {
+                              'label': 'Pandas',
+                              'color': CustomColor.data_skill,
+                            },
+                          ],
+                          imagePath: AppImages.data_engineer,
+                          textColor: CustomColor.whitePrimary,
+                          imageHeight: screenHeight * 0.3,
+                          imageWidth: screenWidth * 0.3,
+                        ),
+                      ),
+                    ],
+                  ),
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
                         width: 2.0,
                         height: screenHeight * 0.67,
-                        color: Colors.purple.shade200,
+                        color: Colors.blueAccent.shade100,
                         margin: const EdgeInsets.symmetric(horizontal: 20.0),
                       ),
                       Expanded(
@@ -221,13 +270,16 @@ class MainTablet extends StatelessWidget {
                               'label': 'Flutter',
                               'color': Colors.blueAccent.shade200,
                             },
-                            {'label': 'Dart', 'color': Colors.blueAccent.shade200},
+                            {
+                              'label': 'Dart',
+                              'color': Colors.blueAccent.shade200,
+                            },
                             {
                               'label': 'Kotlin',
                               'color': Colors.blueAccent.shade200,
                             },
                           ],
-                          imagePath: 'assets/experience/app.png',
+                          imagePath: AppImages.app,
                           textColor: CustomColor.whitePrimary,
                           imageHeight: screenHeight * 0.3,
                           imageWidth: screenWidth * 0.3,
@@ -256,43 +308,7 @@ class MainTablet extends StatelessWidget {
                             {'label': 'Sql', 'color': CustomColor.webDev},
                             {'label': 'Firebase', 'color': CustomColor.webDev},
                           ],
-                          imagePath: 'assets/experience/backend.png',
-                          textColor: CustomColor.whitePrimary,
-                          imageHeight: screenHeight * 0.3,
-                          imageWidth: screenWidth * 0.3,
-                        ),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Container(
-                        width: 2.0,
-                        height: screenHeight * 0.6,
-                        color: CustomColor.data_skill,
-                        margin: const EdgeInsets.symmetric(horizontal: 20.0),
-                      ),
-                      Expanded(
-                        child: ExperienceTabletSection(
-                          title: 'Data Science',
-                          titleColor: CustomColor.data_title,
-                          description:
-                              'Learning Data Science with Python and libraries like Pandas, NumPy, and Scikit-learn. Exploring data analysis, visualization, and machine learning techniques.',
-                          skills: [
-                            {
-                              'label': 'TensorFlow',
-                              'color': CustomColor.data_skill,
-                            },
-                            {
-                              'label': 'Python',
-                              'color': CustomColor.data_skill,
-                            },
-                            {
-                              'label': 'Pandas',
-                              'color': CustomColor.data_skill,
-                            },
-                          ],
-                          imagePath: 'assets/experience/data_science.png',
+                          imagePath: AppImages.backend,
                           textColor: CustomColor.whitePrimary,
                           imageHeight: screenHeight * 0.3,
                           imageWidth: screenWidth * 0.3,
@@ -337,25 +353,38 @@ class MainTablet extends StatelessWidget {
                       ),
                     ],
                   ),
-                  SizedBox(height: 30,),
-                  Text("that was a short information about the domain that I have previously worked on. while you're at it, have a look at few chosen works that i have created using above domain. And if you want to know more, you can download my resume",
+                  SizedBox(height: 30),
+                  Text(
+                    "that was a short information about the domain that I have previously worked on. while you're at it, have a look at few chosen works that i have created using above domain. And if you want to know more, you can download my resume",
 
                     textAlign: TextAlign.center,
-                    style: TextStyle(
+                    style: GoogleFonts.openSans(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                      decoration: TextDecoration.underline,
+                      color: CustomColor.whitePrimary,
+                    ),
+                  ),
 
-                      color: CustomColor.whitePrimary,fontSize: 18, fontWeight: FontWeight.w500, fontFamily: 'Aptos'),),
-
-                  SizedBox(height: 40,),
+                  SizedBox(height: 40),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      ButtonWidget(title: 'Resume', color: CustomColor.experience, iconAssetPath: 'assets/page.png',onTap: () => Navigator.pushNamed(context, '/work'),),
-                      SizedBox(width: 50,),
-                      ButtonWidget(title: 'Project', color: Colors.blueAccent, iconAssetPath: 'assets/work_arrow.png',onTap: ()=> Navigator.pushNamed(context, '/work'),),
-
+                      ButtonWidget(
+                        title: 'Resume',
+                        color: CustomColor.experience,
+                        iconAssetPath: 'assets/page.png',
+                        onTap: () => Navigator.pushNamed(context, '/work'),
+                      ),
+                      SizedBox(width: 50),
+                      ButtonWidget(
+                        title: 'Project',
+                        color: Colors.blueAccent,
+                        iconAssetPath: 'assets/work_arrow.png',
+                        onTap: () => Navigator.pushNamed(context, '/work'),
+                      ),
                     ],
-                  )
-
+                  ),
                 ],
               ),
             ),

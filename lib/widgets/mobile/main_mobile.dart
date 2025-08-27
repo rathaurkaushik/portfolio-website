@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:portfolio_website/constant/colors.dart';
 import 'package:portfolio_website/widgets/button_widget.dart';
 import 'package:portfolio_website/widgets/direction_divider.dart';
@@ -102,10 +103,10 @@ class MainMobile extends StatelessWidget {
             // Intro Text
             Text(
               "App developer at Bit Beast Pvt. Ltd, UI/UX designer, and a lifelong learner from India 🇮🇳. Debugging life 🛠️ with stories ☕📘 and a cat 🐱 on my lap.",
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w600,
-                fontFamily: 'Aptos',
+              style: GoogleFonts.openSans(
+                fontSize: 14,
+                fontWeight: FontWeight.w500,
+                decoration: TextDecoration.underline,
                 color: CustomColor.whitePrimary,
               ),
               textAlign: TextAlign.center,
