@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:portfolio_website/constant/colors.dart';
 import 'package:portfolio_website/view/tech/tech_controller.dart';
+import 'package:portfolio_website/widgets/mobile/footer_mobile.dart';
 
 class TechSectionMobile extends StatelessWidget {
   final TechStackController controller = Get.put(TechStackController());
@@ -26,7 +27,7 @@ class TechSectionMobile extends StatelessWidget {
       child: Column(
         children: [
           /// Title
-          Text(
+          SelectableText(
             "Tech-stack",
             style: TextStyle(
               fontSize: 22,
@@ -37,7 +38,7 @@ class TechSectionMobile extends StatelessWidget {
           const SizedBox(height: 12),
 
           /// Subtitle
-          Text(
+          SelectableText(
             "Just like any other dev, I also spend more time searching and experimenting tools\n"
                 "than actually coding some senseful things 😎",
             textAlign: TextAlign.center,
@@ -94,7 +95,7 @@ class TechSectionMobile extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text(
+                              SelectableText(
                                 tech.title,
                                 style: const TextStyle(
                                   fontSize: 16,
@@ -103,10 +104,9 @@ class TechSectionMobile extends StatelessWidget {
                                 ),
                               ),
                               const SizedBox(height: 4),
-                              Text(
+                              SelectableText(
                                 tech.description,
                                 maxLines: 2,
-                                overflow: TextOverflow.ellipsis,
                                 style: const TextStyle(
                                   fontSize: 12,
                                   color: Colors.white70,
@@ -123,7 +123,7 @@ class TechSectionMobile extends StatelessWidget {
                             color: Colors.blue,
                             borderRadius: BorderRadius.circular(10),
                           ),
-                          child: Text(
+                          child: SelectableText(
                             tech.category,
                             style: const TextStyle(
                               color: Colors.white,
@@ -155,9 +155,9 @@ class TechSectionMobile extends StatelessWidget {
             itemCount: controller.techList.length,
             physics: const NeverScrollableScrollPhysics(),
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 3, // 3 per row for mobile
-              crossAxisSpacing: 16,
-              mainAxisSpacing: 16,
+              crossAxisCount: 4, // 3 per row for mobile
+              crossAxisSpacing: 25,
+              mainAxisSpacing: 25,
               childAspectRatio: 1,
             ),
             itemBuilder: (context, index) {
@@ -179,8 +179,8 @@ class TechSectionMobile extends StatelessWidget {
                       child: Image.network(
                         item.image,
                         fit: BoxFit.contain,
-                        height: 60,
-                        width: 60,
+                        height: 45,
+                        width: 45,
                       ),
                     ),
                   ),
@@ -188,6 +188,7 @@ class TechSectionMobile extends StatelessWidget {
               });
             },
           ),
+          FooterMobile()
         ],
       ),
     );

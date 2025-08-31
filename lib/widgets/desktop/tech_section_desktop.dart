@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:portfolio_website/constant/colors.dart';
 import 'package:portfolio_website/view/tech/tech_controller.dart';
+import 'package:portfolio_website/widgets/desktop/footer_desktop.dart';
 
 class TechSectionDesktop extends StatelessWidget {
   final TechStackController controller = Get.put(TechStackController());
@@ -29,7 +30,7 @@ class TechSectionDesktop extends StatelessWidget {
       child: Column(
         children: [
           // Title
-          Text(
+          SelectableText(
             'Tech-Stack',
             style: TextStyle(
               fontSize: screenWidth * 0.03, // Responsive font
@@ -41,7 +42,7 @@ class TechSectionDesktop extends StatelessWidget {
           ),
           SizedBox(height: screenHeight * 0.03),
 
-          Text(
+          SelectableText(
             'Just like any other dev, I spend more time searching and experimenting tools\n'
                 'than coding senseful things 😎 — except now it’s called Data Engineering.',
             textAlign: TextAlign.center,
@@ -107,7 +108,7 @@ class TechSectionDesktop extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
+                              SelectableText(
                                 tech.title,
                                 style: TextStyle(
                                   fontSize: screenWidth * 0.013,
@@ -117,9 +118,8 @@ class TechSectionDesktop extends StatelessWidget {
                               ),
                               SizedBox(height: 4),
                               Flexible(
-                                child: Text(
+                                child: SelectableText(
                                   tech.description,
-                                  overflow: TextOverflow.ellipsis,
                                   maxLines: 2,
                                   style: TextStyle(
                                     fontSize: screenWidth * 0.010,
@@ -138,7 +138,7 @@ class TechSectionDesktop extends StatelessWidget {
                             color: Colors.blue,
                             borderRadius: BorderRadius.circular(9),
                           ),
-                          child: Text(
+                          child: SelectableText(
                             tech.category,
                             style: TextStyle(
                               color: Colors.white,
@@ -206,6 +206,10 @@ class TechSectionDesktop extends StatelessWidget {
               });
             },
           ),
+          SizedBox(
+            width: double.infinity,
+            child: FooterDesktop(),
+          )
         ],
       ),
     );

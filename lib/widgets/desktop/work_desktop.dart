@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:portfolio_website/constant/colors.dart';
 import 'package:portfolio_website/models/project_model.dart';
+import 'package:portfolio_website/widgets/desktop/footer_desktop.dart';
 import 'package:portfolio_website/widgets/platform_icons.dart';
 import 'package:portfolio_website/widgets/project_card.dart';
 
@@ -19,7 +20,7 @@ class WorkDesktop extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           // Title
-          const Text(
+          const SelectableText(
             "Works",
             style: TextStyle(
               fontSize: 80,
@@ -32,7 +33,7 @@ class WorkDesktop extends StatelessWidget {
           const SizedBox(height: 40),
 
           // Subtitle / description
-          Text(
+          SelectableText(
             'From websites with pastel hues to intelligent ML models,\n'
                 'infused with little bit of playfulness. So go ahead, and take a \n'
                 'look around 💖',
@@ -88,7 +89,7 @@ class WorkDesktop extends StatelessWidget {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(
+                              SelectableText(
                                 project.title,
                                 style: TextStyle(
                                   fontSize: 18,
@@ -105,7 +106,7 @@ class WorkDesktop extends StatelessWidget {
                             ],
                           ),
                           const SizedBox(height: 10),
-                          Text(
+                          SelectableText(
                             project.description,
                             style: GoogleFonts.openSans(
                               fontSize: 18,
@@ -115,7 +116,7 @@ class WorkDesktop extends StatelessWidget {
                           const SizedBox(height: 15),
                           Row(
                             children: [
-                              const Text(
+                              const SelectableText(
                                 "Available on:",
                                 style: TextStyle(
                                   color: CustomColor.yellowSecondary,
@@ -135,8 +136,11 @@ class WorkDesktop extends StatelessWidget {
               );
             }).toList(),
           ),
-          SizedBox(height: 100,)
-        ],
+      SizedBox(
+        width: double.infinity,
+        child: FooterDesktop(),
+      )
+        ]
       ),
     );
   }

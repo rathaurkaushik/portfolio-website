@@ -4,6 +4,7 @@ import 'dart:js' as js;
 import 'package:portfolio_website/constant/colors.dart';
 import 'package:portfolio_website/models/project_model.dart';
 import 'package:portfolio_website/widgets/platform_icons.dart';
+import 'package:portfolio_website/widgets/tablet/footer_tablet.dart';
 
 class WorkTablet extends StatelessWidget {
   const WorkTablet({super.key});
@@ -18,7 +19,7 @@ class WorkTablet extends StatelessWidget {
         padding: const EdgeInsets.fromLTRB(80, 60, 80, 100),
         child: Column(
           children: [
-          const Text(
+          const SelectableText(
           "Works",
           style: TextStyle(
             fontSize: 50,
@@ -28,7 +29,7 @@ class WorkTablet extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 20),
-        Text(
+        SelectableText(
           'From websites with pastel hues to intelligent ML models,\n'
               'infused with little bit of playfulness. So go ahead, and take a \n'
               'look around 💖',
@@ -80,7 +81,7 @@ class WorkTablet extends StatelessWidget {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(
+                              SelectableText(
                                 project.title,
                                 style: TextStyle(
                                   fontSize: 16,
@@ -97,7 +98,7 @@ class WorkTablet extends StatelessWidget {
                             ],
                           ),
                           const SizedBox(height: 10),
-                          Text(
+                          SelectableText(
                             project.description,
                             style: GoogleFonts.openSans(
                               fontSize: 16,
@@ -107,7 +108,7 @@ class WorkTablet extends StatelessWidget {
                           const SizedBox(height: 15),
                           Row(
                             children: [
-                              const Text(
+                              const SelectableText(
                                 "Available on:",
                                 style: TextStyle(
                                   color: CustomColor.yellowSecondary,
@@ -127,7 +128,7 @@ class WorkTablet extends StatelessWidget {
               );
             }).toList(),
           ),
-            SizedBox(height: 100,)
+            FooterTablet()
         ],
       ),
     );

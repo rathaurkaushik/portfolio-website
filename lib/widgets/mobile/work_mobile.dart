@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'dart:js' as js;
 import 'package:portfolio_website/constant/colors.dart';
 import 'package:portfolio_website/models/project_model.dart';
+import 'package:portfolio_website/widgets/mobile/footer_mobile.dart';
 import 'package:portfolio_website/widgets/platform_icons.dart';
 
 class WorkMobile extends StatelessWidget {
@@ -15,7 +16,7 @@ class WorkMobile extends StatelessWidget {
       padding: const EdgeInsets.all(20),
       child: Column(
         children: [
-          const Text(
+          const SelectableText(
             "Works",
             style: TextStyle(
               fontSize: 35,
@@ -25,7 +26,7 @@ class WorkMobile extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 15),
-          Text(
+          SelectableText(
             'From websites with pastel hues to intelligent ML models,\n'
                 'infused with little bit of playfulness. So go ahead, and take a \n'
                 'look around 💖',
@@ -67,7 +68,7 @@ class WorkMobile extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 12),
-                    Text(
+                    SelectableText(
                       project.title,
                       textAlign: TextAlign.center,
                       style: const TextStyle(
@@ -77,7 +78,7 @@ class WorkMobile extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 8),
-                    Text(
+                    SelectableText(
                       project.description,
                       textAlign: TextAlign.center,
                       style: GoogleFonts.openSans(
@@ -86,7 +87,7 @@ class WorkMobile extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 12),
-                    const Text(
+                    const SelectableText(
                       "Available on:",
                       style: TextStyle(
                         color: CustomColor.yellowSecondary,
@@ -101,7 +102,7 @@ class WorkMobile extends StatelessWidget {
               );
             }).toList(),
           ),
-SizedBox(height: 100,)
+FooterMobile()
         ],
       ),
     );

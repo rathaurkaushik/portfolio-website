@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:portfolio_website/constant/colors.dart';
 import 'package:portfolio_website/view/tech/tech_controller.dart';
+import 'package:portfolio_website/widgets/tablet/footer_tablet.dart';
 
 class TechSectionTablet extends StatelessWidget {
   final TechStackController controller = Get.put(TechStackController());
@@ -198,6 +199,7 @@ class TechSectionTablet extends StatelessWidget {
               });
             },
           ),
+          FooterTablet()
         ],
       ),
     );
