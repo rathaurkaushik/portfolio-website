@@ -14,9 +14,16 @@ class CustomColor {
   static const Color handToneColor = Color(0xffDFAA8B);
   static const Color experienceBackground = Color(0xffd8b4fe);
   static const Color experience = Color(0xffc084fc);
-  static const Color webDev = Color(0xff14b8a6);
-  static const Color data_title = Color(0xfff79292);
+  static const Color webDev = Color(0xff097360);
+  static const Color webDev1 = Color(0xff14b8a6);
+  static const Color webBack = Color(0xffe7ffdf);
+  static const Color data_title = Color(0xfffcf3903);
   static const Color data_skill = Color(0xfffecfb4);
+  static const Color data_eng = Color(0xffffdbea);
+  static const Color data_eng_title = Color(0xff690c58);
+  static const Color bit_beast = Color(0xff2e3764);
+  static const Color footer_color = Color(0xffbbbcbf);
+
 
 
 

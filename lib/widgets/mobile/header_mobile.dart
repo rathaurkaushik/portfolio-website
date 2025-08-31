@@ -1,11 +1,14 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:portfolio_website/constant/colors.dart';
+import 'package:portfolio_website/constant/sns_links.dart';
+import 'package:portfolio_website/utils/navigation_controller.dart';
 import '../../constant/nav_items.dart';
 import '../site_logo.dart';
-
+import 'package:get/get.dart';
+import 'dart:js' as js;
 class HeaderMobile extends StatelessWidget {
-  const HeaderMobile({
+   HeaderMobile({
     super.key,
     this.onLogoTap,
     this.onMenuTap,
@@ -14,11 +17,14 @@ class HeaderMobile extends StatelessWidget {
   final VoidCallback? onLogoTap;
   final VoidCallback? onMenuTap;
 
+  final navController = Get.put(NavigationController());
+
+
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(top: 20),
-      width: MediaQuery.of(context).size.width * 0.9,
+      width: MediaQuery.of(context).size.width * 0.8,
       height: 50,
       child: Stack(
         children: [

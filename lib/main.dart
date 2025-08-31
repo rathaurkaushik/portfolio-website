@@ -1,13 +1,21 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:portfolio_website/firebase_options.dart';
+import 'package:portfolio_website/view/about/about_page.dart';
 import 'package:portfolio_website/view/home/home_controller.dart';
 import 'package:portfolio_website/view/home/home_page.dart';
 import 'package:portfolio_website/view/tech/tech_controller.dart';
 import 'package:portfolio_website/view/tech/tech_page.dart';
 import 'package:portfolio_website/view/work/work_page.dart';
 
-void main() {
+
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyPortfolioApp());
 }
 
@@ -33,7 +41,7 @@ class MyPortfolioApp extends StatelessWidget {
         GetPage(name: '/', page: () => const HomePage()),
         GetPage(name: '/work', page: () => const WorkPage()),
         GetPage(name: '/tech', page: () => TechPage()),
-        // GetPage(name: '/tech', page: () => const TechPage()),
+        GetPage(name: '/about', page: () => const AboutPage()),
         // GetPage(name: '/mark', page: () => const MarkPage()),
         // GetPage(name: '/resume', page: () => const ResumePage()),
       ],

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:portfolio_website/constant/colors.dart';
 
 class ExperienceSkill extends StatelessWidget {
   final String label;
@@ -13,10 +15,15 @@ class ExperienceSkill extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 90,
+      width: 100,
       child: Chip(
         shadowColor: color,
-        label: Text(label,style: TextStyle(color: Colors.black, fontSize: 10,fontWeight: FontWeight.bold,),),
+        label: Text(label,style: GoogleFonts.openSans(
+          fontSize: 12,
+          fontWeight: FontWeight.bold,
+          decoration: TextDecoration.underline,
+          color: Colors.black,
+        ),),
         backgroundColor: color,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(30),

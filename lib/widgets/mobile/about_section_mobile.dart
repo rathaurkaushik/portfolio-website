@@ -5,6 +5,7 @@ import 'package:portfolio_website/constant/app_image.dart';
 import 'package:portfolio_website/constant/colors.dart';
 import 'package:portfolio_website/view/about/about controller.dart';
 import 'package:portfolio_website/view/tech/tech_controller.dart';
+import 'package:portfolio_website/widgets/mobile/footer_mobile.dart';
 
 class AboutSectionMobile extends StatelessWidget {
   final TechStackController controller = Get.put(TechStackController());
@@ -35,7 +36,7 @@ class AboutSectionMobile extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           /// ==== Title ====
-          Text(
+          SelectableText(
             'About',
             style: TextStyle(
               fontSize: screenWidth * 0.09,
@@ -63,7 +64,7 @@ class AboutSectionMobile extends StatelessWidget {
           SizedBox(height: screenHeight * 0.03),
 
           /// ==== Name & Work ====
-          Text(
+          SelectableText(
             'Kaushik Rathaur',
             style: TextStyle(
               fontSize: screenWidth * 0.055,
@@ -73,7 +74,7 @@ class AboutSectionMobile extends StatelessWidget {
             ),
           ),
           SizedBox(height: 6),
-          Text(
+          SelectableText(
             'NOOB Data Engineer, PRO at breaking pipelines',
             textAlign: TextAlign.center,
             style: TextStyle(
@@ -109,7 +110,7 @@ class AboutSectionMobile extends StatelessWidget {
           SizedBox(height: screenHeight * 0.05),
 
           /// ==== About Description ====
-          Text(
+          SelectableText(
             aboutController.about,
             textAlign: TextAlign.center,
             style: GoogleFonts.openSans(
@@ -125,7 +126,7 @@ class AboutSectionMobile extends StatelessWidget {
           /// ==== Current Experience ====
           Align(
             alignment: Alignment.centerLeft,
-            child: Text(
+            child: SelectableText(
               'Current',
               style: GoogleFonts.openSans(
                 fontSize: screenWidth * 0.05,
@@ -156,7 +157,7 @@ class AboutSectionMobile extends StatelessWidget {
           /// ==== Contact Section ====
           Align(
             alignment: Alignment.centerLeft,
-            child: Text(
+            child: SelectableText(
               'Contact',
               style: GoogleFonts.openSans(
                 fontSize: screenWidth * 0.05,
@@ -166,7 +167,7 @@ class AboutSectionMobile extends StatelessWidget {
             ),
           ),
           SizedBox(height: 8),
-          Text.rich(
+          SelectableText.rich(
             TextSpan(
               style: GoogleFonts.openSans(
                 fontSize: screenWidth * 0.04,
@@ -218,8 +219,8 @@ class AboutSectionMobile extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Text("✨  ", style: TextStyle(fontSize: 22)),
-              Text(
+              const SelectableText("✨  ", style: TextStyle(fontSize: 22)),
+              SelectableText(
                 "thanks for visiting",
                 style: GoogleFonts.patrickHand(
                   fontSize: screenWidth * 0.06,
@@ -227,9 +228,10 @@ class AboutSectionMobile extends StatelessWidget {
                   color: Colors.white,
                 ),
               ),
-              const Text("  ✨", style: TextStyle(fontSize: 22)),
+              const SelectableText("  ✨", style: TextStyle(fontSize: 22)),
             ],
           ),
+          FooterMobile()
         ],
       ),
     );
@@ -249,7 +251,7 @@ class AboutSectionMobile extends StatelessWidget {
         borderRadius: BorderRadius.circular(20),
       ),
       child: Center(
-        child: Text(
+        child: SelectableText(
           title,
           style: TextStyle(
             color: textColor,
@@ -268,8 +270,8 @@ class AboutSectionMobile extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        RichText(
-          text: TextSpan(
+        SelectableText.rich(
+          TextSpan(
             children: [
               TextSpan(
                 text: company,
@@ -291,7 +293,7 @@ class AboutSectionMobile extends StatelessWidget {
           ),
         ),
         SizedBox(height: 5),
-        Text(
+        SelectableText(
           description,
           style: GoogleFonts.openSans(
             fontSize: screenWidth * 0.038,

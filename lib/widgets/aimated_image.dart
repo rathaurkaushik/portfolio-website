@@ -1,9 +1,10 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:portfolio_website/constant/app_image.dart';
 
 class AnimatedWaveAvatar extends StatefulWidget {
   final double size;
-  final ImageProvider image;
+  final String image;
   final double amplitude;
   final double secondaryAmp;
   final int lobes;
@@ -82,12 +83,14 @@ class _AnimatedWaveAvatarState extends State<AnimatedWaveAvatar>
                 clipper: _WaveClipper(
                   path: _wavePath(Size(widget.size, widget.size), t),
                 ),
-                child: Image(
-                  image: widget.image,
+                child:
+                Image.network(
+                  widget.image,
                   fit: BoxFit.cover,
                   width: widget.size,
                   height: widget.size,
                 ),
+
               ),
 
               // White border

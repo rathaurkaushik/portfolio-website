@@ -107,7 +107,7 @@ class ContactSection extends StatelessWidget {
       children: [
         _gradientTitle("Get in touch"),
         const SizedBox(height: 16),
-        Text(
+        SelectableText(
           "If you have any queries or would like to discuss potential opportunities,\nplease don't hesitate to reach out to me using the given links:",
           style: GoogleFonts.openSans(
             fontSize: 16,
@@ -185,7 +185,7 @@ class ContactSection extends StatelessWidget {
       shaderCallback: (bounds) => const LinearGradient(
         colors: [Colors.cyan, Colors.purpleAccent, Colors.yellowAccent],
       ).createShader(bounds),
-      child: Text(
+      child: SelectableText(
         text,
         style: const TextStyle(
           fontSize: 28,

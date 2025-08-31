@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:portfolio_website/widgets/experience_skill.dart';
 import 'package:portfolio_website/widgets/hover_widget.dart';
 
@@ -28,39 +29,48 @@ class ExperienceSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return
-
-
-      Padding(
+    final screenSize = MediaQuery.of(context).size;
+    final screenHeight = screenSize.height;
+    final screenWidth = screenSize.width;
+    return Padding(
       padding: EdgeInsets.only(top: topPadding),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Center(
-            child: Text(
+            child: SelectableText(
               title,
-              style: TextStyle(
+              style: GoogleFonts.openSans(
+                fontSize: 24,
+                fontWeight: FontWeight.w500,
+                decoration: TextDecoration.underline,
                 color: titleColor,
-                fontSize: 24.0,
-                fontWeight: FontWeight.bold,
               ),
             ),
           ),
           const SizedBox(height: 16.0),
-          Text(
+          SelectableText(
             description,
-            style: TextStyle(fontSize: 16.0, color: textColor),
+            style: GoogleFonts.openSans(
+              fontSize: 16,
+              fontWeight: FontWeight.w500,
+              decoration: TextDecoration.underline,
+              color: textColor,
+            ),
           ),
           const SizedBox(height: 10.0),
           Wrap(
             // spacing: 2,
             // runSpacing: 2,
-            children: skills
-                .map((skill) => ExperienceSkill(
-              label: skill['label'],
-              color: skill['color'],
-            ))
-                .toList(),
+            children:
+                skills
+                    .map(
+                      (skill) => ExperienceSkill(
+                        label: skill['label'],
+                        color: skill['color'],
+                      ),
+                    )
+                    .toList(),
           ),
           const SizedBox(height: 20.0),
           HoverImageCard(

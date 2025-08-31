@@ -6,7 +6,6 @@ import 'package:portfolio_website/widgets/aimated_image.dart';
 import 'package:portfolio_website/widgets/button_widget.dart';
 import 'package:portfolio_website/widgets/down_arrow_animated.dart';
 import 'package:portfolio_website/widgets/direction_divider.dart';
-import 'package:portfolio_website/widgets/experience_section.dart';
 import 'package:portfolio_website/widgets/tablet/experience_tablet_section.dart';
 import 'package:portfolio_website/widgets/waving_hand.dart';
 
@@ -21,12 +20,12 @@ class MainTablet extends StatelessWidget {
 
     return SingleChildScrollView(
       child: Container(
-        margin: const EdgeInsets.symmetric(horizontal:100, vertical: 50),
+        margin: const EdgeInsets.symmetric(horizontal: 100, vertical: 50),
         constraints: const BoxConstraints(minHeight: 350.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            /// Top Section: Intro & Image
+            /// Top Section: Intro & Name
             Wrap(
               crossAxisAlignment: WrapCrossAlignment.center,
               children: [
@@ -44,15 +43,14 @@ class MainTablet extends StatelessWidget {
                       Rect.fromLTWH(0, 0, bounds.width, bounds.height),
                     );
                   },
-                  blendMode:
-                      BlendMode.srcIn, // Required to apply gradient to text
-                  child: const Text(
+                  blendMode: BlendMode.srcIn,
+                  child: const SelectableText(
                     "Kaushik_  ",
                     style: TextStyle(
                       fontSize: 40,
                       height: 1.5,
                       fontWeight: FontWeight.bold,
-                      color: Colors.white, // Important!
+                      color: Colors.white,
                     ),
                   ),
                 ),
@@ -61,9 +59,11 @@ class MainTablet extends StatelessWidget {
             ),
 
             const SizedBox(height: 25),
+
+            /// Intro Text
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 70.0),
-              child: Text(
+              child: SelectableText(
                 "App developer, Bit Beast Pvt. Ltd, UI/UX designer, and a lifelong learner based in India 🇮🇳, with a love for all things colorful and creative. Debugging life 🛠️ with a cup of stories ☕📘 and a cat on my lap 🐱.",
                 style: GoogleFonts.openSans(
                   fontSize: 16,
@@ -71,56 +71,22 @@ class MainTablet extends StatelessWidget {
                   decoration: TextDecoration.underline,
                   color: CustomColor.whitePrimary,
                 ),
+                textAlign: TextAlign.center,
               ),
             ),
+
             const SizedBox(height: 60),
 
-            /// Image Section
+            /// Profile Image with Animation
             AnimatedWaveAvatar(
-                            size: 250,
-                            image: AppImages.my_image,
-                            amplitude: 5, // zyada wobble chahiye to 12–14
-                            secondaryAmp: 6, // subtle shimmer
-                            lobes: 1, // 4 corners feel
-                            duration: const Duration(
-                              seconds: 15,
-                            ), // speed control (lower = faster)
-                            strokeWidth: 3,
-                          ),
-            // SizedBox(
-            //   height: 300,
-            //   width: 300,
-            //   child: Center(
-            //     child: Container(
-            //       width: 300,
-            //       height: 300,
-            //       decoration: BoxDecoration(
-            //         shape: BoxShape.circle,
-            //         gradient: const RadialGradient(
-            //           colors: [Color(0xFF3b3b3b), Colors.black12],
-            //           center: Alignment.center,
-            //           radius: 0.5,
-            //         ),
-            //         boxShadow: [
-            //           BoxShadow(
-            //             color: Colors.blueAccent.withOpacity(0.2),
-            //             blurRadius: 30,
-            //             spreadRadius: 10,
-            //             offset: const Offset(-10, 0),
-            //           ),
-            //         ],
-            //       ),
-            //       child: ClipOval(
-            //         child: Image.asset(
-            //           "assets/myImage.png",
-            //           width: 300,
-            //           height: 300,
-            //           fit: BoxFit.cover,
-            //         ),
-            //       ),
-            //     ),
-            //   ),
-            // ),
+              size: 250,
+              image: AppImages.my_image,
+              amplitude: 5,
+              secondaryAmp: 6,
+              lobes: 1,
+              duration: const Duration(seconds: 15),
+              strokeWidth: 3,
+            ),
 
             const SizedBox(height: 50),
             const Center(child: DrawArrowAnimated()),
@@ -150,15 +116,15 @@ class MainTablet extends StatelessWidget {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(
+                          SelectableText(
                             "02",
                             style: TextStyle(
-                              fontFamily: 'Aptos',
                               fontSize: 50,
                               color: CustomColor.whitePrimary,
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
-                          Text(
+                          SelectableText(
                             "Years of Experience",
                             textAlign: TextAlign.center,
                             style: TextStyle(
@@ -178,11 +144,10 @@ class MainTablet extends StatelessWidget {
 
             /// Summary Paragraph
             Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 70,),
-              child: Text(
+              padding: const EdgeInsets.symmetric(horizontal: 70),
+              child: SelectableText(
                 textAlign: TextAlign.center,
-                'Over the past three years, I’ve cultivated strong problem-solving and critical thinking abilities, enabling me to quickly adapt to new technologies and evolving workflows. Below is a snapshot of the skill set I’ve acquired—and continue to expand—as I grow both personally and professionally.',
+                "Over the past three years, I’ve cultivated strong problem-solving and critical thinking abilities, enabling me to quickly adapt to new technologies and evolving workflows. Below is a snapshot of the skill set I’ve acquired—and continue to expand—as I grow both personally and professionally.",
                 style: GoogleFonts.openSans(
                   fontSize: 16,
                   fontWeight: FontWeight.w500,
@@ -199,13 +164,14 @@ class MainTablet extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const DirectionalDivider(direction: 'left'),
-                Text(
+                SelectableText(
                   "Experience",
                   style: TextStyle(fontSize: 14, color: Colors.grey.shade500),
                 ),
                 const DirectionalDivider(direction: 'right'),
               ],
             ),
+
             const SizedBox(height: 100),
 
             /// Experience Rows
@@ -213,7 +179,7 @@ class MainTablet extends StatelessWidget {
               padding: const EdgeInsets.only(left: 50.0),
               child: Column(
                 children: [
-                  /// First Row (App Dev & Backend)
+                  /// Data Engineer
                   Row(
                     children: [
                       Container(
@@ -229,18 +195,10 @@ class MainTablet extends StatelessWidget {
                           description:
                           'Learning Data Science with Python and libraries like Pandas, NumPy, and Scikit-learn. Exploring data analysis, visualization, and machine learning techniques.',
                           skills: [
-                            {
-                              'label': 'TensorFlow',
-                              'color': CustomColor.data_skill,
-                            },
-                            {
-                              'label': 'Python',
-                              'color': CustomColor.data_skill,
-                            },
-                            {
-                              'label': 'Pandas',
-                              'color': CustomColor.data_skill,
-                            },
+                            {'label': 'Azure', 'color': CustomColor.data_skill},
+                            {'label': 'Python', 'color': CustomColor.data_skill},
+                            {'label': 'Spark', 'color': CustomColor.data_skill},
+                            {'label': 'Databricks', 'color': CustomColor.data_skill},
                           ],
                           imagePath: AppImages.data_engineer,
                           textColor: CustomColor.whitePrimary,
@@ -250,6 +208,8 @@ class MainTablet extends StatelessWidget {
                       ),
                     ],
                   ),
+
+                  /// App Dev
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -264,20 +224,11 @@ class MainTablet extends StatelessWidget {
                           title: 'App Dev',
                           titleColor: Colors.blueAccent.shade100,
                           description:
-                              'Specialized in creating beautiful and user-friendly web and mobile applications using Flutter and frontend technologies. I bring creativity and attention to detail to every project I craft.',
+                          'Specialized in creating beautiful and user-friendly web and mobile applications using Flutter and frontend technologies. I bring creativity and attention to detail to every project I craft.',
                           skills: [
-                            {
-                              'label': 'Flutter',
-                              'color': Colors.blueAccent.shade200,
-                            },
-                            {
-                              'label': 'Dart',
-                              'color': Colors.blueAccent.shade200,
-                            },
-                            {
-                              'label': 'Kotlin',
-                              'color': Colors.blueAccent.shade200,
-                            },
+                            {'label': 'Flutter', 'color': Colors.blueAccent.shade200},
+                            {'label': 'Dart', 'color': Colors.blueAccent.shade200},
+                            {'label': 'Kotlin', 'color': Colors.blueAccent.shade200},
                           ],
                           imagePath: AppImages.app,
                           textColor: CustomColor.whitePrimary,
@@ -285,9 +236,10 @@ class MainTablet extends StatelessWidget {
                           imageWidth: screenWidth * 0.3,
                         ),
                       ),
-                      // const SizedBox(width: 30),
                     ],
                   ),
+
+                  /// Backend
                   Row(
                     children: [
                       Container(
@@ -301,12 +253,11 @@ class MainTablet extends StatelessWidget {
                           title: 'Backend',
                           titleColor: CustomColor.webDev,
                           description:
-                              "Working on creating robust backend solutions that prioritize security, scalability, and decentralization in modern applications.",
+                          "Working on creating robust backend solutions that prioritize security, scalability, and decentralization in modern applications.",
                           skills: [
                             {'label': 'Node Js', 'color': CustomColor.webDev},
-                            {'label': 'Mongo DB', 'color': CustomColor.webDev},
+                            {'label': 'No Sql', 'color': CustomColor.webDev},
                             {'label': 'Sql', 'color': CustomColor.webDev},
-                            {'label': 'Firebase', 'color': CustomColor.webDev},
                           ],
                           imagePath: AppImages.backend,
                           textColor: CustomColor.whitePrimary,
@@ -316,6 +267,8 @@ class MainTablet extends StatelessWidget {
                       ),
                     ],
                   ),
+
+                  /// Blockchain
                   Row(
                     children: [
                       Container(
@@ -328,24 +281,14 @@ class MainTablet extends StatelessWidget {
                         child: ExperienceTabletSection(
                           title: 'Blockchain',
                           titleColor: CustomColor.experienceBackground,
-                          // topPadding: 100,
                           description:
-                              'Exploring the evolving Web3 ecosystem focused on decentralized security layers...',
+                          'Exploring the evolving Web3 ecosystem focused on decentralized security layers...',
                           skills: [
-                            {
-                              'label': 'Solidity',
-                              'color': CustomColor.experience,
-                            },
-                            {
-                              'label': 'Hardhat',
-                              'color': CustomColor.experience,
-                            },
-                            {
-                              'label': 'OpenZeppelin',
-                              'color': CustomColor.experience,
-                            },
+                            {'label': 'Solidity', 'color': CustomColor.experience},
+                            {'label': 'Hardhat', 'color': CustomColor.experience},
+                            {'label': 'OpenZeppelin', 'color': CustomColor.experience},
                           ],
-                          imagePath: 'assets/experience/blockchain.png',
+                          imagePath: AppImages.block_chain,
                           textColor: CustomColor.whitePrimary,
                           imageHeight: screenHeight * 0.3,
                           imageWidth: screenWidth * 0.3,
@@ -353,10 +296,12 @@ class MainTablet extends StatelessWidget {
                       ),
                     ],
                   ),
-                  SizedBox(height: 30),
-                  Text(
-                    "that was a short information about the domain that I have previously worked on. while you're at it, have a look at few chosen works that i have created using above domain. And if you want to know more, you can download my resume",
 
+                  const SizedBox(height: 30),
+
+                  /// Summary Text
+                  SelectableText(
+                    "that was a short information about the domain that I have previously worked on.\nwhile you're at it, have a look at few chosen works that i have created using above domain.\nAnd if you want to know more, you can download my resume",
                     textAlign: TextAlign.center,
                     style: GoogleFonts.openSans(
                       fontSize: 16,
@@ -366,7 +311,9 @@ class MainTablet extends StatelessWidget {
                     ),
                   ),
 
-                  SizedBox(height: 40),
+                  const SizedBox(height: 40),
+
+                  /// Buttons
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -376,7 +323,7 @@ class MainTablet extends StatelessWidget {
                         iconAssetPath: 'assets/page.png',
                         onTap: () => Navigator.pushNamed(context, '/work'),
                       ),
-                      SizedBox(width: 50),
+                      const SizedBox(width: 50),
                       ButtonWidget(
                         title: 'Project',
                         color: Colors.blueAccent,

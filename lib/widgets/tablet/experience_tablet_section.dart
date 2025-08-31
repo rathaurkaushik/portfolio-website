@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:portfolio_website/constant/colors.dart';
 import 'package:portfolio_website/constant/size.dart'; // Ensure this defines `mobileWidth` and `tabletWidth`
 import 'package:portfolio_website/widgets/experience_skill.dart';
@@ -31,7 +32,12 @@ class ExperienceTabletSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
-      final isTablet = constraints.maxWidth >= mobileWidth && constraints.maxWidth <= tabletWidth;
+      final isTablet =
+          constraints.maxWidth >= mobileWidth && constraints.maxWidth <= tabletWidth;
+
+      // Scale font size based on screen width (fix pixel issue)
+      final double baseFontSize = (constraints.maxWidth / 40).clamp(14.0, 22.0);
+      final double titleFontSize = (constraints.maxWidth / 25).clamp(18.0, 28.0);
 
       Widget content = Padding(
         padding: EdgeInsets.only(top: topPadding),
@@ -41,24 +47,33 @@ class ExperienceTabletSection extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Center(
-                child: Text(
+                child: SelectableText(
                   title,
+                  textAlign: TextAlign.center,
                   style: TextStyle(
                     color: titleColor,
-                    fontSize: 24.0,
+                    fontSize: titleFontSize,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
               ),
               const SizedBox(height: 16.0),
-              Text(
+              SelectableText(
                 description,
-                style: TextStyle(fontSize: 16.0, color: textColor),
+                textAlign: TextAlign.justify,
+                style: GoogleFonts.openSans(
+                  fontSize: baseFontSize,
+                  fontWeight: FontWeight.w500,
+                  decoration: TextDecoration.underline,
+                  color: textColor,
+                ),
               ),
               const SizedBox(height: 10.0),
               Wrap(
                 crossAxisAlignment: WrapCrossAlignment.start,
                 alignment: WrapAlignment.start,
+                spacing: 8,
+                runSpacing: 8,
                 children: skills
                     .map((skill) => ExperienceSkill(
                   label: skill['label'],
@@ -67,13 +82,13 @@ class ExperienceTabletSection extends StatelessWidget {
                     .toList(),
               ),
               const SizedBox(height: 20.0),
-              // Image container, making sure the photo matches the container size
+              // Image container
               Container(
                 width: double.infinity,
-                height: imageHeight, // Use height based on provided imageHeight
+                height: imageHeight,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(12), // Rounded corners
-                  color: Colors.transparent, // Keep transparent if the image is shown
+                  borderRadius: BorderRadius.circular(12),
+                  color: Colors.transparent,
                   boxShadow: [
                     BoxShadow(
                       color: Colors.black.withOpacity(0.2),
@@ -83,7 +98,7 @@ class ExperienceTabletSection extends StatelessWidget {
                   ],
                 ),
                 child: ClipRRect(
-                  borderRadius: BorderRadius.circular(12), // Ensure the image matches the border radius
+                  borderRadius: BorderRadius.circular(12),
                   child: HoverImageCard(
                     imagePath: imagePath,
                     height: imageHeight,
@@ -97,11 +112,10 @@ class ExperienceTabletSection extends StatelessWidget {
         ),
       );
 
-      // Apply background color and container only for tablet
       return isTablet
           ? Container(
         width: double.infinity,
-        color: Colors.grey.shade900, // Background color for tablet view
+        color: Colors.grey.shade900,
         padding: const EdgeInsets.all(16.0),
         child: content,
       )

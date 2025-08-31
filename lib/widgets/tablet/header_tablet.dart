@@ -1,9 +1,11 @@
 import 'dart:ui';
+import 'dart:js' as js;
 import 'dart:math'; // ✅ min() ke liye import
 import 'package:flutter/material.dart';
 import 'package:portfolio_website/constant/colors.dart';
 import 'package:portfolio_website/constant/nav_items.dart';
 import 'package:get/get.dart';
+import 'package:portfolio_website/constant/sns_links.dart';
 import 'package:portfolio_website/utils/navigation_controller.dart';
 
 class HeaderTablet extends StatelessWidget {
@@ -92,15 +94,24 @@ class HeaderTablet extends StatelessWidget {
                     return Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 7),
                       child: TextButton(
-                        onPressed: () => navController.changeRoute(route),
+                        onPressed: () {
+                          if (title == "resume") {
+                            // 👇 open in new tab
+                            js.context.callMethod('open', [SnsLinks.resume, '_blank']);
+                          } else {
+                            // 👇 normal navigation
+                            navController.changeRoute(route);
+                          }
+                        },
                         child: Text(
                           title,
                           style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w500,
+                            fontSize: 16, // ✅ second code se liya
+                            fontWeight: FontWeight.bold, // ✅ bold style
+                            fontFamily: 'Aptos', // ✅ custom font
                             color: navController.currentRoute.value == route
-                                ? Colors.amberAccent
-                                : CustomColor.whitePrimary,
+                                ? CustomColor.experience // ✅ active color
+                                : CustomColor.whitePrimary, // ✅ default color
                             decoration: navController.currentRoute.value == route
                                 ? TextDecoration.underline
                                 : TextDecoration.none,
@@ -111,6 +122,7 @@ class HeaderTablet extends StatelessWidget {
                   },
                 ),
               ))
+
             ],
           ),
         ),

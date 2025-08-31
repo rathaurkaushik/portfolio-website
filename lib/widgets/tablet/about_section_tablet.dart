@@ -3,8 +3,9 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:portfolio_website/constant/app_image.dart';
 import 'package:portfolio_website/constant/colors.dart';
-import 'package:portfolio_website/view/about/about%20controller.dart';
+import 'package:portfolio_website/view/about/about controller.dart';
 import 'package:portfolio_website/view/tech/tech_controller.dart';
+import 'package:portfolio_website/widgets/tablet/footer_tablet.dart';
 
 class AboutSectionTablet extends StatelessWidget {
   final TechStackController controller = Get.put(TechStackController());
@@ -28,17 +29,17 @@ class AboutSectionTablet extends StatelessWidget {
 
     return Padding(
       padding: EdgeInsets.symmetric(
-        horizontal: screenWidth * 0.08, // smaller than desktop
+        horizontal: screenWidth * 0.08,
         vertical: screenHeight * 0.04,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           // Title
-          Text(
+          SelectableText(
             'About',
             style: TextStyle(
-              fontSize: screenWidth * 0.06, // bigger on tablet for readability
+              fontSize: screenWidth * 0.06,
               fontWeight: FontWeight.bold,
               fontFamily: 'Aptos',
               foreground: Paint()..shader = linearGradient,
@@ -62,7 +63,7 @@ class AboutSectionTablet extends StatelessWidget {
           SizedBox(height: screenHeight * 0.04),
 
           // Name
-          Text(
+          SelectableText(
             'Kaushik Rathaur',
             style: TextStyle(
               fontSize: 20,
@@ -71,7 +72,7 @@ class AboutSectionTablet extends StatelessWidget {
               color: CustomColor.whitePrimary,
             ),
           ),
-          Text(
+          SelectableText(
             'NOOB Data Engineer, PRO at breaking pipelines',
             textAlign: TextAlign.center,
             style: TextStyle(
@@ -101,7 +102,7 @@ class AboutSectionTablet extends StatelessWidget {
           SizedBox(height: screenHeight * 0.04),
 
           // About text
-          Text(
+          SelectableText(
             aboutController.about,
             textAlign: TextAlign.center,
             style: GoogleFonts.openSans(
@@ -117,7 +118,7 @@ class AboutSectionTablet extends StatelessWidget {
           // Experience title
           Align(
             alignment: Alignment.centerLeft,
-            child: Text(
+            child: SelectableText(
               'Current',
               style: GoogleFonts.openSans(
                 fontSize: 20,
@@ -132,8 +133,8 @@ class AboutSectionTablet extends StatelessWidget {
           // First Job
           Align(
             alignment: Alignment.centerLeft,
-            child: RichText(
-              text: TextSpan(
+            child: SelectableText.rich(
+              TextSpan(
                 children: [
                   TextSpan(
                     text: "Hitachi Systems India",
@@ -157,7 +158,7 @@ class AboutSectionTablet extends StatelessWidget {
           ),
           Align(
             alignment: Alignment.centerLeft,
-            child: Text(
+            child: SelectableText(
               aboutController.hitachiCompanyAbout,
               style: GoogleFonts.openSans(
                 fontSize: 16,
@@ -172,8 +173,8 @@ class AboutSectionTablet extends StatelessWidget {
           // Second Job
           Align(
             alignment: Alignment.centerLeft,
-            child: RichText(
-              text: TextSpan(
+            child: SelectableText.rich(
+              TextSpan(
                 children: [
                   TextSpan(
                     text: "Bit Beast Pvt Ltd",
@@ -197,7 +198,7 @@ class AboutSectionTablet extends StatelessWidget {
           ),
           Align(
             alignment: Alignment.centerLeft,
-            child: Text(
+            child: SelectableText(
               aboutController.beastCompanyAbout,
               style: GoogleFonts.openSans(
                 fontSize: 16,
@@ -212,7 +213,7 @@ class AboutSectionTablet extends StatelessWidget {
           // Contact
           Align(
             alignment: Alignment.centerLeft,
-            child: Text(
+            child: SelectableText(
               'Contact',
               style: GoogleFonts.openSans(
                 fontSize: 20,
@@ -223,8 +224,8 @@ class AboutSectionTablet extends StatelessWidget {
           ),
           Align(
             alignment: Alignment.centerLeft,
-            child: RichText(
-              text: TextSpan(
+            child: SelectableText.rich(
+              TextSpan(
                 style: GoogleFonts.openSans(
                   fontSize: 16,
                   fontWeight: FontWeight.w500,
@@ -270,8 +271,8 @@ class AboutSectionTablet extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Text("✨  ", style: TextStyle(fontSize: 20)),
-              Text(
+              const SelectableText("✨  ", style: TextStyle(fontSize: 20)),
+              SelectableText(
                 "thanks for visiting",
                 style: GoogleFonts.patrickHand(
                   fontSize: 22,
@@ -279,9 +280,10 @@ class AboutSectionTablet extends StatelessWidget {
                   color: Colors.white,
                 ),
               ),
-              const Text("  ✨", style: TextStyle(fontSize: 20)),
+              const SelectableText("  ✨", style: TextStyle(fontSize: 20)),
             ],
           ),
+          FooterTablet()
         ],
       ),
     );
@@ -294,7 +296,7 @@ class AboutSectionTablet extends StatelessWidget {
         color: bg,
         borderRadius: BorderRadius.circular(20),
       ),
-      child: Text(
+      child: SelectableText(
         text,
         style: TextStyle(
           color: fg,

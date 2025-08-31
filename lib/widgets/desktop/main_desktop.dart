@@ -89,7 +89,7 @@ class _MainDesktopState extends State<MainDesktop>
                     const SizedBox(height: 15),
                     Padding(
                       padding: const EdgeInsets.only(right: 150.0),
-                      child: Text(
+                      child: SelectableText(
                         "App developer, Bit Beast Pvt. Ltd, UI/UX designer, and a lifelong learner based in India 🇮🇳, with a love for all things colorful and creative. Debugging life 🛠️ with a cup of stories ☕📘 and a cat on my lap 🐱.",
                         style: GoogleFonts.openSans(
                           fontSize: 20,
@@ -194,14 +194,14 @@ class _MainDesktopState extends State<MainDesktop>
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(
+                        SelectableText(
                           "02",
                           style: TextStyle(
                             fontSize: 50,
                             color: CustomColor.whitePrimary,
                           ),
                         ),
-                        Text(
+                        SelectableText(
                           "Years of Experience",
                           textAlign: TextAlign.center,
                           style: TextStyle(
@@ -222,7 +222,7 @@ class _MainDesktopState extends State<MainDesktop>
           /// Summary Paragraph
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 100, vertical: 15),
-            child: Text(
+            child: SelectableText(
               textAlign: TextAlign.center,
               'Over the past three years, I’ve cultivated strong problem-solving and critical thinking abilities, enabling me to quickly adapt to new technologies and evolving workflows. Below is a snapshot of the skill set I’ve acquired—and continue to expand—as I grow both personally and professionally.',
               style: GoogleFonts.openSans(
@@ -241,7 +241,7 @@ class _MainDesktopState extends State<MainDesktop>
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const DirectionalDivider(direction: 'left'),
-              Text(
+              SelectableText(
                 "Experience",
                 style: TextStyle(fontSize: 14, color: Colors.grey.shade500),
               ),
@@ -373,7 +373,7 @@ class _MainDesktopState extends State<MainDesktop>
               ),
 
               SizedBox(height: 30),
-              Text(
+              SelectableText(
                 "that was a short information about the domain that I have previously worked on.\nwhile you're at it, have a look at few chosen works that i have created using above domain.\nAnd if you want to know more, you can download my resume",
                 textAlign: TextAlign.center,
                 style: GoogleFonts.openSans(

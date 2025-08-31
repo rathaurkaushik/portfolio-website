@@ -3,8 +3,9 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:portfolio_website/constant/app_image.dart';
 import 'package:portfolio_website/constant/colors.dart';
-import 'package:portfolio_website/view/about/about%20controller.dart';
+import 'package:portfolio_website/view/about/about controller.dart';
 import 'package:portfolio_website/view/tech/tech_controller.dart';
+import 'package:portfolio_website/widgets/desktop/footer_desktop.dart';
 
 class AboutSectionDesktop extends StatelessWidget {
   final TechStackController controller = Get.put(TechStackController());
@@ -14,10 +15,8 @@ class AboutSectionDesktop extends StatelessWidget {
 
   final Shader linearGradient = const LinearGradient(
     colors: <Color>[
-      // Colors.red,
       Colors.red,
-      Color(0xFFFBB034), // right
-      // CustomColor.webDev,
+      Color(0xFFFBB034),
       Colors.blue,
       Colors.red,
     ],
@@ -30,22 +29,23 @@ class AboutSectionDesktop extends StatelessWidget {
 
     return Padding(
       padding: EdgeInsets.symmetric(
-        horizontal: screenWidth * 0.20, // 10% of screen width
-        vertical: screenHeight * 0.05, // 5% of screen height
+        horizontal: screenWidth * 0.20,
+        vertical: screenHeight * 0.05,
       ),
       child: Column(
         children: [
           // Title
-          Text(
+          SelectableText(
             'About',
             style: TextStyle(
-              fontSize: screenWidth * 0.04, // Responsive font
+              fontSize: screenWidth * 0.04,
               fontWeight: FontWeight.bold,
               fontFamily: 'Aptos',
-
               foreground: Paint()..shader = linearGradient,
             ),
           ),
+
+          // Profile image
           Container(
             height: screenHeight * 0.21,
             decoration: BoxDecoration(
@@ -57,10 +57,11 @@ class AboutSectionDesktop extends StatelessWidget {
               child: Image.network(AppImages.about_image),
             ),
           ),
+
           SizedBox(height: screenHeight * 0.05),
 
-          /// ==== Name and Work ====
-          Text(
+          // Name & Tagline
+          SelectableText(
             'Kaushik Rathaur',
             style: TextStyle(
               fontSize: 18,
@@ -69,7 +70,7 @@ class AboutSectionDesktop extends StatelessWidget {
               color: CustomColor.whitePrimary,
             ),
           ),
-          Text(
+          SelectableText(
             'NOOB Data Engineer, PRO at breaking pipelines',
             style: TextStyle(
               fontSize: 18,
@@ -82,148 +83,60 @@ class AboutSectionDesktop extends StatelessWidget {
 
           SizedBox(height: screenHeight * 0.05),
 
+          // Skills row
           Padding(
             padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.05),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly, // evenly spaced
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Expanded(
-                  child: Container(
-                    padding: EdgeInsets.symmetric(
-                        horizontal: screenWidth * 0.01,
-                        vertical: screenHeight * 0.005),
-                    margin: EdgeInsets.symmetric(horizontal: screenWidth * 0.005),
-                    decoration: BoxDecoration(
-                      color: CustomColor.data_skill,
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: Center(
-                      child: Text(
-                        'Big Data',
-                        style: TextStyle(
-                          color: CustomColor.data_title,
-                          fontFamily: 'Aptos',
-                          fontWeight: FontWeight.bold,
-                          fontSize: screenWidth * 0.012, // responsive font
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                Expanded(
-                  child: Container(
-                    padding: EdgeInsets.symmetric(
-                        horizontal: screenWidth * 0.01,
-                        vertical: screenHeight * 0.005),
-                    margin: EdgeInsets.symmetric(horizontal: screenWidth * 0.005),
-                    decoration: BoxDecoration(
-                      color: CustomColor.webBack,
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: Center(
-                      child: Text(
-                        'App',
-                        style: TextStyle(
-                          color: CustomColor.webDev,
-                          fontFamily: 'Aptos',
-                          fontWeight: FontWeight.bold,
-                          fontSize: screenWidth * 0.012,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                Expanded(
-                  child: Container(
-                    padding: EdgeInsets.symmetric(
-                        horizontal: screenWidth * 0.01,
-                        vertical: screenHeight * 0.005),
-                    margin: EdgeInsets.symmetric(horizontal: screenWidth * 0.005),
-                    decoration: BoxDecoration(
-                      color: CustomColor.experienceBackground,
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: Center(
-                      child: Text(
-                        'AI - ML',
-                        style: TextStyle(
-                          color: Colors.deepPurpleAccent,
-                          fontFamily: 'Aptos',
-                          fontWeight: FontWeight.bold,
-                          fontSize: screenWidth * 0.012,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                Expanded(
-                  child: Container(
-                    padding: EdgeInsets.symmetric(
-                        horizontal: screenWidth * 0.001,
-                        vertical: screenHeight * 0.005),
-                    margin: EdgeInsets.symmetric(horizontal: screenWidth * 0.001),
-                    decoration: BoxDecoration(
-                      color: CustomColor.data_eng,
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: Center(
-                      child: Text(
-                        'Data Eng',
-                        style: TextStyle(
-                          color: CustomColor.data_eng_title,
-                          fontFamily: 'Aptos',
-                          fontWeight: FontWeight.bold,
-                          fontSize: screenWidth * 0.012,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
+                _skillChip('Big Data', CustomColor.data_skill, CustomColor.data_title, screenWidth, screenHeight),
+                _skillChip('App', CustomColor.webBack, CustomColor.webDev, screenWidth, screenHeight),
+                _skillChip('AI - ML', CustomColor.experienceBackground, Colors.deepPurpleAccent, screenWidth, screenHeight),
+                _skillChip('Data Eng', CustomColor.data_eng, CustomColor.data_eng_title, screenWidth, screenHeight),
               ],
             ),
           ),
 
-
           SizedBox(height: screenHeight * 0.05),
 
-          /// About and experience
-          Text(
+          // About
+          SelectableText(
             aboutController.about,
             style: GoogleFonts.openSans(
               fontSize: 20,
               fontWeight: FontWeight.w500,
               color: CustomColor.whitePrimary,
-              height: 1
+              height: 1,
             ),
           ),
 
           SizedBox(height: screenHeight * 0.05),
 
-      Align(
-        alignment: Alignment.centerLeft, // or centerRight, center
-        child: Text(
-          'Current',
-          style: GoogleFonts.openSans(
-            fontSize: 21,
-            fontWeight: FontWeight.bold,
-            color: CustomColor.hintDark,
-          ),
-        ),
-      ),
-
-      /// First Experience
-          ///
-          Align (
+          // Current Title
+          Align(
             alignment: Alignment.centerLeft,
-            child: RichText(
-              text: TextSpan(
+            child: SelectableText(
+              'Current',
+              style: GoogleFonts.openSans(
+                fontSize: 21,
+                fontWeight: FontWeight.bold,
+                color: CustomColor.hintDark,
+              ),
+            ),
+          ),
+
+          // First Experience
+          Align(
+            alignment: Alignment.centerLeft,
+            child: SelectableText.rich(
+              TextSpan(
                 children: [
                   TextSpan(
                     text: "Hitachi Systems India",
                     style: GoogleFonts.openSans(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
-                      color: Colors.redAccent, // 👈 Company name ka color
+                      color: Colors.redAccent,
                     ),
                   ),
                   TextSpan(
@@ -231,17 +144,16 @@ class AboutSectionDesktop extends StatelessWidget {
                     style: GoogleFonts.openSans(
                       fontSize: 20,
                       fontWeight: FontWeight.w500,
-                      color: CustomColor.whitePrimary, // 👈 Normal color
+                      color: CustomColor.whitePrimary,
                     ),
                   ),
                 ],
               ),
             ),
           ),
-
           Align(
-            alignment: Alignment.centerLeft, // or centerRight, center
-            child: Text(
+            alignment: Alignment.centerLeft,
+            child: SelectableText(
               aboutController.hitachiCompanyAbout,
               style: GoogleFonts.openSans(
                 fontSize: 18,
@@ -250,17 +162,19 @@ class AboutSectionDesktop extends StatelessWidget {
               ),
             ),
           ),
+
+          // Second Experience
           Align(
             alignment: Alignment.centerLeft,
-            child: RichText(
-              text: TextSpan(
+            child: SelectableText.rich(
+              TextSpan(
                 children: [
                   TextSpan(
                     text: "Bit Beast Pvt Ltd",
                     style: GoogleFonts.openSans(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
-                      color: CustomColor.experienceBackground, // 👈 Company name ka color
+                      color: CustomColor.experienceBackground,
                     ),
                   ),
                   TextSpan(
@@ -268,7 +182,7 @@ class AboutSectionDesktop extends StatelessWidget {
                     style: GoogleFonts.openSans(
                       fontSize: 20,
                       fontWeight: FontWeight.w500,
-                      color: CustomColor.whitePrimary, // 👈 Normal color
+                      color: CustomColor.whitePrimary,
                     ),
                   ),
                 ],
@@ -276,8 +190,8 @@ class AboutSectionDesktop extends StatelessWidget {
             ),
           ),
           Align(
-            alignment: Alignment.centerLeft, // or centerRight, center
-            child: Text(
+            alignment: Alignment.centerLeft,
+            child: SelectableText(
               aboutController.beastCompanyAbout,
               style: GoogleFonts.openSans(
                 fontSize: 18,
@@ -287,10 +201,12 @@ class AboutSectionDesktop extends StatelessWidget {
             ),
           ),
 
+          SizedBox(height: screenHeight * 0.05),
 
+          // Contact
           Align(
-            alignment: Alignment.centerLeft, // or centerRight, center
-            child: Text(
+            alignment: Alignment.centerLeft,
+            child: SelectableText(
               'Contact',
               style: GoogleFonts.openSans(
                 fontSize: 21,
@@ -299,18 +215,17 @@ class AboutSectionDesktop extends StatelessWidget {
               ),
             ),
           ),
-
           Align(
             alignment: Alignment.centerLeft,
-            child: RichText(
-              text: TextSpan(
+            child: SelectableText.rich(
+              TextSpan(
                 style: GoogleFonts.openSans(
                   fontSize: 18,
                   fontWeight: FontWeight.w500,
                   color: CustomColor.whitePrimary,
                 ),
                 children: [
-                  TextSpan(
+                  const TextSpan(
                     text: "Although I may not have a huge online presence, you can reach me via Gmail at ",
                   ),
                   TextSpan(
@@ -322,9 +237,7 @@ class AboutSectionDesktop extends StatelessWidget {
                       color: CustomColor.whitePrimary,
                     ),
                   ),
-                  TextSpan(
-                    text: " or find me on LinkedIn as ",
-                  ),
+                  const TextSpan(text: " or find me on LinkedIn as "),
                   TextSpan(
                     text: "kaushik-rathaur",
                     style: GoogleFonts.openSans(
@@ -334,9 +247,7 @@ class AboutSectionDesktop extends StatelessWidget {
                       color: CustomColor.whitePrimary,
                     ),
                   ),
-                  TextSpan(
-                    text: " and Instagram as ",
-                  ),
+                  const TextSpan(text: " and Instagram as "),
                   TextSpan(
                     text: "Kaushik_🕊️",
                     style: GoogleFonts.openSans(
@@ -351,34 +262,66 @@ class AboutSectionDesktop extends StatelessWidget {
             ),
           ),
 
-          /// Thanks & Visit
           SizedBox(height: screenHeight * 0.05),
 
+          // Thanks for visiting
           Center(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Text(
+                const SelectableText(
                   "✨  ",
                   style: TextStyle(fontSize: 22),
                 ),
-                Text(
+                SelectableText(
                   "thanks for visiting",
-                  style: GoogleFonts.patrickHand(  // 👈 Handwritten style font
+                  style: GoogleFonts.patrickHand(
                     fontSize: 26,
                     fontWeight: FontWeight.w600,
                     color: Colors.white,
-                    height: 5
+                    height: 5,
                   ),
                 ),
-                const Text(
+                const SelectableText(
                   "  ✨",
                   style: TextStyle(fontSize: 22),
                 ),
               ],
             ),
-          )
+          ),
+
+          SizedBox(
+            width: double.infinity,
+            child: FooterDesktop(),
+          ),
         ],
+      ),
+    );
+  }
+
+  Widget _skillChip(String text, Color bg, Color fg, double screenWidth, double screenHeight) {
+    return Expanded(
+      child: Container(
+        padding: EdgeInsets.symmetric(
+          horizontal: screenWidth * 0.01,
+          vertical: screenHeight * 0.005,
+        ),
+        margin: EdgeInsets.symmetric(horizontal: screenWidth * 0.005),
+        decoration: BoxDecoration(
+          color: bg,
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: Center(
+          child: SelectableText(
+            text,
+            style: TextStyle(
+              color: fg,
+              fontFamily: 'Aptos',
+              fontWeight: FontWeight.bold,
+              fontSize: screenWidth * 0.012,
+            ),
+          ),
+        ),
       ),
     );
   }

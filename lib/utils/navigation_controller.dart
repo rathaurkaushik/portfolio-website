@@ -2,7 +2,7 @@ import 'package:get/get.dart';
 
 class NavigationController extends GetxController {
   final currentRoute = '/'.obs;
-  final routeNames = ['/work', '/about', '/tech', '/mark', '/resume'];
+  final routeNames = ['/work', '/about', '/tech','/resume'];
   void changeRoute(String route) {
     currentRoute.value = route;
     Get.toNamed(route);
