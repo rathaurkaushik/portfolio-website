@@ -4,7 +4,6 @@ import 'dart:js' as js;
 import 'package:portfolio_website/constant/sns_links.dart';
 
 class HomeController extends GetxController {
-  final scaffoldKey = GlobalKey<ScaffoldState>();
   final scrollController = ScrollController();
   final navbarKeys = List.generate(4, (_) => GlobalKey());
   var isDrawerOpen = false.obs; // for animation toggle

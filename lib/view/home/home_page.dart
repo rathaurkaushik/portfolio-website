@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:portfolio_website/constant/colors.dart';
 import 'package:portfolio_website/constant/size.dart';
+import 'package:portfolio_website/utils/navigation_controller.dart';
 
 import 'package:portfolio_website/widgets/contact_section.dart';
 import 'package:portfolio_website/widgets/drawer_mobile.dart';
@@ -22,13 +23,14 @@ class HomePage extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
+    final navController = Get.find<NavigationController>();
     final screenSize = MediaQuery.of(context).size;
     final screenWidth = screenSize.width;
 
     return LayoutBuilder(
       builder: (context, constraints) {
         return Scaffold(
-          key: controller.scaffoldKey,
+          key: navController.scaffoldKey,
           backgroundColor: CustomColor.scaffoldBg,
           endDrawer: constraints.maxWidth >= mobileWidth
               ? null
@@ -46,7 +48,7 @@ class HomePage extends GetView<HomeController> {
                   HeaderTablet()
                 else
                   HeaderMobile(
-                    onMenuTap: () => controller.scaffoldKey.currentState?.openEndDrawer(),
+                    onMenuTap: () => navController.scaffoldKey.currentState?.openEndDrawer(),
                     onLogoTap: () => Get.toNamed('/'),
                   ),
 

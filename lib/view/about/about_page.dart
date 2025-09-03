@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:portfolio_website/constant/colors.dart';
 import 'package:portfolio_website/constant/size.dart';
+import 'package:portfolio_website/utils/navigation_controller.dart';
 import 'package:portfolio_website/view/home/home_controller.dart';
 import 'package:portfolio_website/widgets/desktop/about_section_desktop.dart';
 import 'package:portfolio_website/widgets/desktop/header_desktop.dart';
@@ -16,6 +17,8 @@ class AboutPage extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
+    final navController = Get.find<NavigationController>();
+
     final screenSize = MediaQuery.of(context).size;
     final screenWidth = screenSize.width;
 
@@ -26,7 +29,7 @@ class AboutPage extends GetView<HomeController> {
         final isTablet = !isDesktop && constraints.maxWidth > mobileWidth;
 
         return Scaffold(
-          key: controller.scaffoldKey,
+          key: navController.scaffoldKey,
           backgroundColor: CustomColor.scaffoldBg,
           endDrawer: constraints.maxWidth >= mobileWidth
               ? null
@@ -39,7 +42,7 @@ class AboutPage extends GetView<HomeController> {
                 if (isMobile)
                   HeaderMobile(
                     onMenuTap: () =>
-                        controller.scaffoldKey.currentState?.openEndDrawer(),
+                        navController.scaffoldKey.currentState?.openEndDrawer(),
                     onLogoTap: () => Get.toNamed('/'),
                   )
                 else if (isTablet)

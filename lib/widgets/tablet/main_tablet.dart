@@ -318,17 +318,17 @@ class MainTablet extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       ButtonWidget(
-                        title: 'Resume',
+                        title: "resume",
                         color: CustomColor.experience,
-                        iconAssetPath: 'assets/page.png',
-                        onTap: () => Navigator.pushNamed(context, '/work'),
+                        iconAssetPath: "assets/page.png",
+                        route: "/resume", // route सिर्फ compare करने के लिए
                       ),
                       const SizedBox(width: 50),
                       ButtonWidget(
                         title: 'Project',
                         color: Colors.blueAccent,
                         iconAssetPath: 'assets/work_arrow.png',
-                        onTap: () => Navigator.pushNamed(context, '/work'),
+                        route: '/work',
                       ),
                     ],
                   ),
